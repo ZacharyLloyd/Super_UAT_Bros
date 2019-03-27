@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
     public float maxSpeed; //Max Speed
     public float jumpForce; // Amount of jump
     [HideInInspector] public bool isWalking; // Is player walking true/false
+    [HideInInspector] public static bool grounded = false; //Is the player grounded
+    [HideInInspector] public static Animator __animator; //The player's animator
     Animator animator; // Player's animator
     Rigidbody2D rb; // Player's rigidbody
+    public Collider2D groundCheck; //Checking if player is grounded
 
     //Mapping Movement to selected keys
     public KeyCode right = KeyCode.D;
@@ -27,13 +30,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        __animator = GetComponent<Animator>();
+        animator = __animator;
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        Debug.Log("Is grounded" + grounded);
     
     }
     private void FixedUpdate()
@@ -42,7 +47,7 @@ public class Player : MonoBehaviour
             MoveRight();
         else if (Input.GetKey(left))
             MoveLeft();
-        else if (Input.GetKey(jump))
+        else if (Input.GetKey(jump) && grounded == true)
             Jump();
         else
         {
@@ -63,6 +68,8 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(speed, 0);
         }
+        if (Input.GetKey(jump) && grounded == true)
+            Jump();
     }
     //Moving to the left
     public void MoveLeft()
@@ -76,11 +83,16 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(-speed, 0);
         }
+        if (Input.GetKey(jump) && grounded == true)
+            Jump();
     }
-    //Jumping ***THIS IS EMPTY FOR NOW***
+    //Jumping
     public void Jump()
     {
-
+        maxSpeed = maxSpeed * 2;
+        grounded = false;
+        animator.SetBool("grounded", grounded);
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
     //Flipping the image across the Y axis
     public void Flip(DIRECTION direction)
