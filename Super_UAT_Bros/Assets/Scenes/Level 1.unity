@@ -232,6 +232,8 @@ MonoBehaviour:
   speed: 0.75
   maxSpeed: 4
   jumpForce: 20
+  totalJumps: 2
+  setValue: 2
   isWalking: 0
   groundCheck: {fileID: 1206789546}
   right: 100

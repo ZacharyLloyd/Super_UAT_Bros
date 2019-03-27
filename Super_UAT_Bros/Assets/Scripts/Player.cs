@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
     public float speed; //Speed for moving
     public float maxSpeed; //Max Speed
     public float jumpForce; // Amount of jump
+    public int totalJumps;
+    public static int __totalJumps; // Number of jumps
+    public static int __setValue; // Set value for number of jumps
+    [HideInInspector] public int setValue;
     [HideInInspector] public bool isWalking; // Is player walking true/false
     [HideInInspector] public static bool grounded = false; //Is the player grounded
     [HideInInspector] public static Animator __animator; //The player's animator
@@ -33,28 +37,34 @@ public class Player : MonoBehaviour
         __animator = GetComponent<Animator>();
         animator = __animator;
         animator = GetComponent<Animator>();
+        setValue = totalJumps;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Is grounded" + grounded);
-    
-    }
-    private void FixedUpdate()
-    {
         if (Input.GetKey(right))
             MoveRight();
         else if (Input.GetKey(left))
             MoveLeft();
-        else if (Input.GetKey(jump) && grounded == true)
-            Jump();
         else
         {
             isWalking = false;
             //Set up bool for Animator
             animator.SetBool("IsWalking", isWalking);
         }
+
+        if ((Input.GetKeyDown(jump) && totalJumps != 0) && (Input.GetKey(right) == false && Input.GetKey(left) == false))
+            Jump();
+
+        if (grounded == true)
+        {
+            totalJumps = setValue;
+        }
+    }
+    private void FixedUpdate()
+    {
+        
     }
     //Moving to the right
     public void MoveRight()
@@ -68,7 +78,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(speed, 0);
         }
-        if (Input.GetKey(jump) && grounded == true)
+        if (Input.GetKeyDown(jump) && totalJumps != 0)
             Jump();
     }
     //Moving to the left
@@ -83,16 +93,18 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(-speed, 0);
         }
-        if (Input.GetKey(jump) && grounded == true)
+        if (Input.GetKeyDown(jump) && totalJumps != 0)
             Jump();
     }
     //Jumping
     public void Jump()
     {
+        
         maxSpeed = maxSpeed * 2;
         grounded = false;
         animator.SetBool("grounded", grounded);
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        --totalJumps;
     }
     //Flipping the image across the Y axis
     public void Flip(DIRECTION direction)
