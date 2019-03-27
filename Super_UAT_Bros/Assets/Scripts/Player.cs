@@ -33,23 +33,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Set up bool for Animator
-        animator.SetBool("isWalking", isWalking);
+       
+    
     }
     private void FixedUpdate()
     {
         if (Input.GetKey(right))
             MoveRight();
-        if (Input.GetKey(left))
+        else if (Input.GetKey(left))
             MoveLeft();
-        if (Input.GetKey(jump))
+        else if (Input.GetKey(jump))
             Jump();
-        else isWalking = false;
+        else
+        {
+            isWalking = false;
+            //Set up bool for Animator
+            animator.SetBool("IsWalking", isWalking);
+        }
     }
     //Moving to the right
     public void MoveRight()
     {
         isWalking = true;
+        //Set up bool for Animator
+        animator.SetBool("IsWalking", isWalking);
 
         Flip(DIRECTION.Right);
         if (rb.velocity.magnitude < maxSpeed)
@@ -61,6 +68,9 @@ public class Player : MonoBehaviour
     public void MoveLeft()
     {
         isWalking = true;
+        //Set up bool for Animator
+        animator.SetBool("IsWalking", isWalking);
+
         Flip(DIRECTION.Left);
         if (rb.velocity.magnitude < maxSpeed)
         {
