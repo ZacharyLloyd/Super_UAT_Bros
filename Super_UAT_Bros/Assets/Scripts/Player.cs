@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     Animator animator; // Player's animator
     Rigidbody2D rb; // Player's rigidbody
     public Collider2D groundCheck; //Checking if player is grounded
+    bool step = false; // Step is for detecting walking to play the sound
+
+    IEnumerator coroutine;
 
     //Mapping Movement to selected keys
     public KeyCode right = KeyCode.D;
@@ -69,6 +72,8 @@ public class Player : MonoBehaviour
     //Moving to the right
     public void MoveRight()
     {
+        coroutine = Walk();
+
         isWalking = true;
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
@@ -78,12 +83,17 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(speed, 0);
         }
+
+        if (grounded == true) StartCoroutine(coroutine);
+
         if (Input.GetKeyDown(jump) && totalJumps != 0)
             Jump();
     }
     //Moving to the left
     public void MoveLeft()
     {
+        coroutine = Walk();
+
         isWalking = true;
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
@@ -93,17 +103,23 @@ public class Player : MonoBehaviour
         {
             rb.velocity += new Vector2(-speed, 0);
         }
+
+        if (grounded == true) StartCoroutine(coroutine);
+
         if (Input.GetKeyDown(jump) && totalJumps != 0)
             Jump();
     }
     //Jumping
     public void Jump()
     {
-        
+        coroutine = Walk();
+        StopCoroutine(coroutine);
+
         maxSpeed = maxSpeed * 2;
         grounded = false;
         animator.SetBool("grounded", grounded);
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        FindObjectOfType<AudioManager>().Play("Jumping");
         --totalJumps;
     }
     //Flipping the image across the Y axis
@@ -122,6 +138,17 @@ public class Player : MonoBehaviour
                 xscale.x = (float)DIRECTION.Left;
                 gameObject.transform.localScale = xscale;
                 break;
+        }
+    }
+    public IEnumerator Walk()
+    {
+        // This will produce sound as the player walks
+        if (step == false)
+        {
+            FindObjectOfType<AudioManager>().Play("Walking");
+            step = true;
+            yield return new WaitForSeconds((float)0.15);
+            step = false;
         }
     }
 }
