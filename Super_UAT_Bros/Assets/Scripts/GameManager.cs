@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         healthUI.fillAmount = currentHealth / maxHealth;
         ammo = ammoValue;
         ammo = maxAmmo;
-        ammoUI.text = "Ammo: " + ammo.ToString() + "/" + maxAmmo.ToString();
+        ammoUI.text =  ammo.ToString() + "/" + maxAmmo.ToString();
 
 
     }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     public void UseAmmo()
     {
         --ammo;
-        ammoUI.text = "Ammo: " + ammo.ToString() + "/" + maxAmmo.ToString();
+        ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
     }
     public void DecreaseHealth(float damage)
     {
