@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Shoot : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class Shoot : MonoBehaviour
     private bool isKeyReleased;
     private IEnumerator coroutine;
 
+    Animator animator;
+    float seconds = 1f;
+    float settedSeconds;
+    bool IsShooting = false;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        settedSeconds = seconds;
+    }
+
     //called at start
     private void Start()
     {
@@ -23,19 +35,22 @@ public class Shoot : MonoBehaviour
     //called once per frame
     void Update()
     {
+        animator.SetBool("IsShooting", IsShooting);
         //When player shoots
         if (Input.GetKeyDown(KeyCode.Space) || isKeyReleased == true)
         {
+            IsShooting = true;
             coroutine = Recoil();
             switch (automaticMode)
             {
                 case false:
                     if (GameManager.ammo != 0)
                     {
+                        seconds = settedSeconds;
                         isKeyReleased = false;
                         //Bullet will spawn with a set direction based on player's direction
                         Instantiate(bulletPrefab, pointOfFire.position, pointOfFire.rotation);
-                        //FindObjectOfType<AudioManager>().Play("Shooting"); NOT NEEDED YET****
+                        //FindObjectOfType<AudioManager>().Play("Shooting"); NOT NEEDED YET***
                     }
                     break;
                 case true:
@@ -48,6 +63,15 @@ public class Shoot : MonoBehaviour
             }
         }
         if (Input.GetKeyUp(KeyCode.Space) && automaticMode == true) StopCoroutine(coroutine);
+        if (IsShooting == true && seconds != 0)
+        {
+            seconds -= Time.deltaTime;
+            if (seconds <= 0)
+            {
+                seconds = settedSeconds;
+                IsShooting = false;
+            }
+        }
     }
 
     private IEnumerator Recoil()
