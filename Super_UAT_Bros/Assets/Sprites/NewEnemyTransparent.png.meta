@@ -17,8 +17,6 @@ TextureImporter:
     21300024: NewEnemyTransparent_12
     21300026: NewEnemyTransparent_13
     21300028: NewEnemyTransparent_14
-    21300030: NewEnemyTransparent_15
-    21300032: NewEnemyTransparent_16
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -62,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +113,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b39e10edc3d4c8d4cb09bf169d5f3bf1
+      spriteID: 20f139d0a4409034da25db0b91745a86
       vertices: []
       indices: 
       edges: []
@@ -124,7 +122,7 @@ TextureImporter:
       name: NewEnemyTransparent_1
       rect:
         serializedVersion: 2
-        x: 174
+        x: 173
         y: 358
         width: 38
         height: 64
@@ -135,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4bcf6b184f93074983ddce2bbbaa5e3
+      spriteID: d80cdaf09169bbc489d7a30380cd5143
       vertices: []
       indices: 
       edges: []
@@ -155,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25218dd548e0b844b87910e5e80ce2b0
+      spriteID: 97e914fb8839ac04a8d5ba19fa8a74dd
       vertices: []
       indices: 
       edges: []
@@ -175,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0babcbe7ebd951546bb74ddbe9cad4e4
+      spriteID: a5f29c2c70ad11d4fa04ca46b43dcb07
       vertices: []
       indices: 
       edges: []
@@ -195,7 +193,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a8c33fe4cb097648801968094877d8f
+      spriteID: 92c3b15e5da92a94cabf675eb797d055
       vertices: []
       indices: 
       edges: []
@@ -215,7 +213,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9e31643b17790f47a0c11b71cb7264e
+      spriteID: 51c41bd3132539d42aa397c1c400517a
       vertices: []
       indices: 
       edges: []
@@ -235,7 +233,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e93358015ad206d4e942fad621254e00
+      spriteID: 5ac4d37be4cb5e442b43db36deafcecd
       vertices: []
       indices: 
       edges: []
@@ -245,7 +243,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 257
-        y: 52
+        y: 53
         width: 35
         height: 66
       alignment: 0
@@ -255,7 +253,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f70356e93e677847ac7f79781c4e440
+      spriteID: 3adb7e65a1cabd149857c2480aab9a5a
       vertices: []
       indices: 
       edges: []
@@ -264,9 +262,9 @@ TextureImporter:
       name: NewEnemyTransparent_8
       rect:
         serializedVersion: 2
-        x: 293
+        x: 292
         y: 53
-        width: 34
+        width: 35
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -275,7 +273,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f720f17dbc4a7e4f825ae50e627b58c
+      spriteID: e8e5c0cee8cc1e04eb4a94b434dd93a3
       vertices: []
       indices: 
       edges: []
@@ -284,9 +282,9 @@ TextureImporter:
       name: NewEnemyTransparent_9
       rect:
         serializedVersion: 2
-        x: 414
+        x: 415
         y: 65
-        width: 43
+        width: 42
         height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -295,7 +293,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80974b20bc9b65f4d9142d7bbe4fe6d8
+      spriteID: c1476a73cac21cb44a03c3867e513502
       vertices: []
       indices: 
       edges: []
@@ -307,7 +305,7 @@ TextureImporter:
         x: 457
         y: 67
         width: 44
-        height: 64
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,7 +313,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c84a7f7821cb16f4ea22c2ebf91407da
+      spriteID: 43c87f1c63252a246aadfde7af91da26
       vertices: []
       indices: 
       edges: []
@@ -325,9 +323,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 509
-        y: 67
+        y: 68
         width: 40
-        height: 63
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,7 +333,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7af2fee352389164183eb764ae10daee
+      spriteID: af934817cf4bc7141852a0b6b7cb777e
       vertices: []
       indices: 
       edges: []
@@ -344,9 +342,9 @@ TextureImporter:
       name: NewEnemyTransparent_12
       rect:
         serializedVersion: 2
-        x: 561
+        x: 562
         y: 68
-        width: 38
+        width: 37
         height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -355,7 +353,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42706d7e6a6aaf542bb4b0798cbb4c02
+      spriteID: 13dffd91f555a164a85858b9daadd19f
       vertices: []
       indices: 
       edges: []
@@ -367,7 +365,7 @@ TextureImporter:
         x: 609
         y: 67
         width: 40
-        height: 60
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,7 +373,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6484b062e318fd48bc7fe05cdd7ab71
+      spriteID: b47c642f67b6da74dbdd13e0c35ba091
       vertices: []
       indices: 
       edges: []
@@ -385,9 +383,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 653
-        y: 67
+        y: 68
         width: 34
-        height: 63
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -395,47 +393,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00bb9ab1acfd1344f976b0694bb0ce9a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NewEnemyTransparent_15
-      rect:
-        serializedVersion: 2
-        x: 449
-        y: 33
-        width: 85
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f792d28f09a8df41ade7f36b3e693ab
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NewEnemyTransparent_16
-      rect:
-        serializedVersion: 2
-        x: 521
-        y: 169
-        width: 77
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 466efe272e7fea74a9c3ea8a25caf9d7
+      spriteID: 26d6b4c155a1f4b4a8141c4c8bfee18c
       vertices: []
       indices: 
       edges: []
@@ -443,7 +401,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 556079503d6be014883f0ca919e99f91
+    spriteID: 042011574b8833246950bf54ed3d35b4
     vertices: []
     indices: 
     edges: []
