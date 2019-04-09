@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Pawn : MonoBehaviour
 {
     public float speed; //Speed for moving
     public float maxSpeed; //Max Speed
@@ -12,70 +12,77 @@ public class Player : MonoBehaviour
     public static int __setValue; // Set value for number of jumps
     [HideInInspector] public int setValue;
     [HideInInspector] public bool isWalking; // Is player walking true/false
-    [HideInInspector] public static bool grounded = false; //Is the player grounded
+    [HideInInspector] public static bool __grounded = false; //Is the player grounded
+    public bool grounded;
     [HideInInspector] public static Animator __animator; //The player's animator
-    Animator animator; // Player's animator
-    Rigidbody2D rb; // Player's rigidbody
+    public Animator animator; // Player's animator
+    public Rigidbody2D rb; // Player's rigidbody
     public Collider2D groundCheck; //Checking if player is grounded
     bool step = false; // Step is for detecting walking to play the sound
     public Transform tf;
+    public Noisemaker noisemaker;
 
-    IEnumerator coroutine;
-
-    //Mapping Movement to selected keys
-    public KeyCode right = KeyCode.D;
-    public KeyCode left = KeyCode.A;
-    public KeyCode jump = KeyCode.J;
-
+    public IEnumerator coroutine;
+    
     //Flipping the image with this enumerator
     public enum DIRECTION
     {
         Left = -1,
         Right = 1
     }
-    private void Awake()
+
+
+    //AI Component
+    public AISenses senses;
+
+    //FSM
+    public enum AIStates
     {
-        tf = GetComponent<Transform>();
+        Idle,
+        Chase,
+        LookAround,
+        GoHome,
+        Shoot
     }
+    public Vector3 homePoint;
+    public Vector3 goalPoint;
+    public AIStates currentState;
+    public float stopChaseDistance;
+    public float closeEnough;
+
+    public float moveSpeed = 1;
+    public float turnSpeed = 1;
+
+    public GameObject bulletPrefab;
+    public GameObject enemyBulletPrefab;
+    public bool canShoot = true;
+    public Transform pointOfFire;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        __animator = GetComponent<Animator>();
-        animator = __animator;
-        animator = GetComponent<Animator>();
-        setValue = totalJumps;
+
+        grounded = __grounded;
+        // Store my senses component
+        senses = GetComponent<AISenses>();
+
+        tf = GetComponent<Transform>();
+
+        // Load noisemaker
+        noisemaker = GetComponent<Noisemaker>();
+
+        // Save home point
+        homePoint = tf.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        if (Input.GetKey(right))
-            MoveRight();
-        else if (Input.GetKey(left))
-            MoveLeft();
-        else
-        {
-            isWalking = false;
-            //Set up bool for Animator
-            animator.SetBool("IsWalking", isWalking);
-        }
 
-        if ((Input.GetKeyDown(jump) && totalJumps != 0) && (Input.GetKey(right) == false && Input.GetKey(left) == false))
-            Jump();
+    }
 
-        if (grounded == true)
-        {
-            totalJumps = setValue;
-        }
-    }
-    private void FixedUpdate()
-    {
-        
-    }
+    //This is the player's functions
     //Moving to the right
-    public void MoveRight()
+    public virtual void MoveRight()
     {
         coroutine = Walk();
 
@@ -91,11 +98,11 @@ public class Player : MonoBehaviour
 
         if (grounded == true) StartCoroutine(coroutine);
 
-        if (Input.GetKeyDown(jump) && totalJumps != 0)
+        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
             Jump();
     }
     //Moving to the left
-    public void MoveLeft()
+    public virtual void MoveLeft()
     {
         coroutine = Walk();
 
@@ -111,11 +118,11 @@ public class Player : MonoBehaviour
 
         if (grounded == true) StartCoroutine(coroutine);
 
-        if (Input.GetKeyDown(jump) && totalJumps != 0)
+        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
             Jump();
     }
     //Jumping
-    public void Jump()
+    public virtual void Jump()
     {
         coroutine = Walk();
         StopCoroutine(coroutine);
@@ -128,7 +135,7 @@ public class Player : MonoBehaviour
         --totalJumps;
     }
     //Flipping the image across the Y axis
-    public void Flip(DIRECTION direction)
+    public virtual void Flip(DIRECTION direction)
     {
         Vector3 xscale;
         switch (direction)
@@ -156,4 +163,45 @@ public class Player : MonoBehaviour
             step = false;
         }
     }
+
+
+    //This is the enemy's functions
+    public virtual void Idle()
+    {
+
+    }
+    public virtual void Chase()
+    {
+
+    }
+    public virtual void GoHome()
+    {
+
+    }
+    public virtual void LookAround()
+    {
+
+    }
+    public virtual void MoveTowards(Vector3 target)
+    {
+
+    }
+    public virtual void Move(Vector3 direction)
+    {
+
+    }
+    public virtual void Turn(bool isTurnClockwise)
+    {
+
+    }
+    public virtual void Shoot()
+    {
+
+    }
+    IEnumerator Recoil()
+    {
+        yield return new WaitForSeconds(1f);
+        canShoot = true;
+    }
+
 }

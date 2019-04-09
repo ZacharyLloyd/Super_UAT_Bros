@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     //Singleton
     public static GameManager instance;
-
-
+    public Transform tf;
+    public Player player;
     public Image healthUI;
     public float currentHealth;
     public float maxHealth;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        tf = GetComponent<Transform>();
     }
 
     // Start is called before the first frame update
