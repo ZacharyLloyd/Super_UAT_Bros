@@ -20,7 +20,8 @@ public class EnemyPawn : Pawn
 
     public override void Idle()
     {
-        //Does nothing
+        //Does nothing but play animation
+        animator.SetBool("EnemyIdle", true);
     }
 
     public override void Chase()
@@ -57,6 +58,7 @@ public class EnemyPawn : Pawn
     {
         //Move in the direction passed through, at speed "moveSpeed"
         tf.position += (direction.normalized * moveSpeed * Time.deltaTime);
+        animator.SetBool("EnemyWalk", true);
     }
 
     //Flipping the image across the Y axis
@@ -83,7 +85,7 @@ public class EnemyPawn : Pawn
         //Look at target
         Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
         tf.right = vectorToTarget;
-
+        animator.SetBool("EnemyAttack", true);
         if (canAttack == true)
         {
             canAttack = false;
