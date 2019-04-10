@@ -8,7 +8,7 @@ public class EnemyPawn : Pawn
     public override void Start()
     {
         base.Start();
-        canShoot = true;
+        canAttack = true;
 
     }
 
@@ -59,31 +59,35 @@ public class EnemyPawn : Pawn
         tf.position += (direction.normalized * moveSpeed * Time.deltaTime);
     }
 
-    public override void Turn(bool isTurnClockwise)
+    //Flipping the image across the Y axis
+    public override void Flip(DIRECTION direction)
     {
-        //Rotate based on turnSpeed and direction enemies are turning
-        if (isTurnClockwise)
+        Vector3 xscale;
+        switch (direction)
         {
-            tf.Rotate(0, 0, turnSpeed * Time.deltaTime);
-        }
-        else
-        {
-            tf.Rotate(0, 0, -turnSpeed * Time.deltaTime);
+            case DIRECTION.Right:
+                xscale = gameObject.transform.localScale;
+                xscale.x = (float)DIRECTION.Right;
+                gameObject.transform.localScale = xscale;
+                break;
+            case DIRECTION.Left:
+                xscale = gameObject.transform.localScale;
+                xscale.x = (float)DIRECTION.Left;
+                gameObject.transform.localScale = xscale;
+                break;
         }
     }
 
-    public override void Shoot()
+    public override void Attack()
     {
         //Look at target
         Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
         tf.right = vectorToTarget;
 
-        if (canShoot == true)
+        if (canAttack == true)
         {
-            canShoot = false;
+            canAttack = false;
             coroutine = Recoil();
-            Instantiate(enemyBulletPrefab, pointOfFire);
-            enemyBulletPrefab.tag = "enemyBullet";
             StartCoroutine(coroutine);
         }
 
@@ -91,7 +95,7 @@ public class EnemyPawn : Pawn
     IEnumerator Recoil()
     {
         yield return new WaitForSeconds(1f);
-        canShoot = true;
+        canAttack = true;
     }
     //Destroying enemy
     private void OnTriggerEnter2D(Collider2D collision)

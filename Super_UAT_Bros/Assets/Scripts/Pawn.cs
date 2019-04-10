@@ -42,7 +42,7 @@ public class Pawn : MonoBehaviour
         Chase,
         LookAround,
         GoHome,
-        Shoot
+        Attack
     }
     public Vector3 homePoint;
     public Vector3 goalPoint;
@@ -51,11 +51,9 @@ public class Pawn : MonoBehaviour
     public float closeEnough;
 
     public float moveSpeed = 1;
-    public float turnSpeed = 1;
 
     public GameObject bulletPrefab;
-    public GameObject enemyBulletPrefab;
-    public bool canShoot = true;
+    public bool canAttack = true;
     public Transform pointOfFire;
 
     // Start is called before the first frame update
@@ -194,14 +192,14 @@ public class Pawn : MonoBehaviour
     {
 
     }
-    public virtual void Shoot()
+    public virtual void Attack()
     {
 
     }
     IEnumerator Recoil()
     {
         yield return new WaitForSeconds(1f);
-        canShoot = true;
+        canAttack = true;
     }
 
 }

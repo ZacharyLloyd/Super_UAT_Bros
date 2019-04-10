@@ -74,7 +74,7 @@ public class AISenses : MonoBehaviour
         }
 
         //If the raycast hits the player first, enemy can see them
-        if (hitInfo.collider.name == "enemyShooter")
+        if (hitInfo.collider.name == "enemy")
         {
 
             return true;
