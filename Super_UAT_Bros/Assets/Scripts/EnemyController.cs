@@ -22,13 +22,13 @@ public class EnemyController : Controller
                 //Check for transitions
                 if (pawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {
-                    pawn.currentState = Pawn.AIStates.Attack;
+                    pawn.currentState = Pawn.AIStates.Chase;
                 }
                 break;
             case Pawn.AIStates.Chase:
                 pawn.Chase();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < pawn.stopChaseDistance / 2)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 16)
                 {
                     pawn.currentState = Pawn.AIStates.Attack;
                 }
@@ -36,15 +36,11 @@ public class EnemyController : Controller
             case Pawn.AIStates.Attack:
                 pawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > pawn.stopChaseDistance / 2)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 24)
                 {
                     //StopCoroutine(pawn.coroutine);
                     pawn.currentState = Pawn.AIStates.Chase;
                 }
-                /*if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > pawn.stopChaseDistance)
-                {
-                    pawn.currentState = Pawn.AIStates.GoHome;
-                }*/
                 break;
         }
     }

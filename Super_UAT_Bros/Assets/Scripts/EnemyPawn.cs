@@ -26,21 +26,21 @@ public class EnemyPawn : Pawn
 
     public override void Chase()
     {
-        goalPoint = GameManager.instance.player.tf.position;
-        MoveTowards(goalPoint);
+        MoveTowards(GameManager.instance.player.tf.position);
     }
 
     public override void MoveTowards(Vector2 target)
     {
+        
         if (Vector2.Distance(tf.position, target) > closeEnough)
         {
-            tf.Translate(Vector2.right * moveSpeed);
             Move(GameManager.instance.player.tf);
         }
     }
 
     public override void Move(Transform target)
     {
+        rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
         if (target.position.x < tf.position.x)
         {
             Flip(DIRECTION.Left);
@@ -49,25 +49,6 @@ public class EnemyPawn : Pawn
             Flip(DIRECTION.Right);
         }
         animator.SetBool("EnemyWalk", true);
-    }
-
-    //Flipping the image across the Y axis
-    public override void Flip(DIRECTION direction)
-    {
-        Vector3 xscale;
-        switch (direction)
-        {
-            case DIRECTION.Right:
-                xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Right;
-                gameObject.transform.localScale = xscale;
-                break;
-            case DIRECTION.Left:
-                xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Left;
-                gameObject.transform.localScale = xscale;
-                break;
-        }
     }
 
     public override void Attack()

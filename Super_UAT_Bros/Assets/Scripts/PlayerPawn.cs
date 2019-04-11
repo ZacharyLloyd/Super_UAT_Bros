@@ -10,7 +10,7 @@ public class PlayerPawn : Pawn
     public override void Start()
     {
         base.Start();
-        bulletPrefab.tag = "Bullet";
+        //bulletPrefab.tag = "Bullet";
     }
 
     // Update is called once per frame

@@ -32,7 +32,9 @@ public class Pawn : MonoBehaviour
         Right = 1
     }
 
+
     //Enemy parts
+
     //AI Component
     public AISenses senses;
 
@@ -43,13 +45,11 @@ public class Pawn : MonoBehaviour
         Chase,
         Attack
     }
-    public Vector3 homePoint;
-    public Vector3 goalPoint;
+
     public AIStates currentState;
-    public float stopChaseDistance;
     public float closeEnough;
     public float moveSpeed = 1;
-    public bool canAttack = true;
+    public bool canAttack = false;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -63,9 +63,6 @@ public class Pawn : MonoBehaviour
 
         // Load noisemaker
         noisemaker = GetComponent<Noisemaker>();
-
-        // Save home point
-        homePoint = tf.position;
     }
 
     public virtual void Update()
