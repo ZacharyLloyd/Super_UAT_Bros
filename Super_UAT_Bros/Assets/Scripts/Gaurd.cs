@@ -12,9 +12,7 @@ public class Guard : MonoBehaviour
     {
         Idle,
         Chase,
-        LookAround,
-        GoHome,
-        Shoot
+        Attack
     }
     public Vector3 homePoint;
     public Vector3 goalPoint;
@@ -23,8 +21,10 @@ public class Guard : MonoBehaviour
     public float closeEnough;
 
     public float moveSpeed = 1;
-    public float turnSpeed = 1;
     Transform tf;
+    public Animator animator;
+    public bool canAttack = true;
+    IEnumerator coroutine;
 
     // Use this for initialization
     void Start()
@@ -49,10 +49,6 @@ public class Guard : MonoBehaviour
             case AIStates.Idle:
                 Idle();
                 //Check for transitions
-                if (senses.CanHear(GameManager.instance.player.gameObject))
-                {
-                    currentState = AIStates.LookAround;
-                }
                 if (senses.CanSee(GameManager.instance.player.gameObject))
                 {
                     currentState = AIStates.Chase;
@@ -61,57 +57,33 @@ public class Guard : MonoBehaviour
             case AIStates.Chase:
                 Chase();
                 //Check for transitions
-                if (!senses.CanSee(GameManager.instance.player.gameObject))
-                {
-                    currentState = AIStates.LookAround;
-                }
-                if (Vector3.Distance(tf.position, GameManager.instance.player.tf.position) > stopChaseDistance)
-                {
-                    currentState = AIStates.GoHome;
-                }
                 if (Vector3.Distance(tf.position, GameManager.instance.player.tf.position) <= stopChaseDistance)
                 {
-                    currentState = AIStates.Shoot;
+                    currentState = AIStates.Attack;
                 }
                 break;
-            case AIStates.LookAround:
-                LookAround();
+            case AIStates.Attack:
+                Attack();
                 //Check for transitions
-                if (senses.CanSee(GameManager.instance.player.gameObject))
+                if (Vector3.Distance(tf.position, GameManager.instance.player.tf.position) > stopChaseDistance / 2)
                 {
-                    currentState = AIStates.Shoot;
-
-                }
-                else if (Vector3.Distance(tf.position, GameManager.instance.player.tf.position) > stopChaseDistance)
-                {
-                    currentState = AIStates.GoHome;
-                }
-                else if (!senses.CanHear(GameManager.instance.player.gameObject))
-                {
-                    currentState = AIStates.GoHome;
-                }
-                break;
-            case AIStates.GoHome:
-                GoHome();
-                //Check for transitions
-                if (senses.CanHear(GameManager.instance.player.gameObject))
-                {
-                    currentState = AIStates.LookAround;
-                }
-                if (senses.CanSee(GameManager.instance.player.gameObject))
-                {
+                    //StopCoroutine(pawn.coroutine);
                     currentState = AIStates.Chase;
                 }
-                if (Vector3.Distance(tf.position, homePoint) <= closeEnough)
+                /*if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > pawn.stopChaseDistance)
                 {
-                    currentState = AIStates.Idle;
-                }
+                    pawn.currentState = Pawn.AIStates.GoHome;
+                }*/
                 break;
 
 
         }
     }
-
+    IEnumerator Recoil()
+    {
+        yield return new WaitForSeconds(1f);
+        canAttack = true;
+    }
     public void Idle()
     {
         //Does nothing
@@ -121,17 +93,6 @@ public class Guard : MonoBehaviour
     {
         goalPoint = GameManager.instance.player.tf.position;
         MoveTowards(goalPoint);
-    }
-
-    public void GoHome()
-    {
-        goalPoint = homePoint;
-        MoveTowards(goalPoint);
-    }
-
-    public void LookAround()
-    {
-        Turn(true);
     }
 
     public void MoveTowards(Vector3 target)
@@ -153,17 +114,19 @@ public class Guard : MonoBehaviour
         tf.position += (direction.normalized * moveSpeed * Time.deltaTime);
     }
 
-    public void Turn(bool isTurnClockwise)
+    public void Attack()
     {
-        //Rotate based on turnSpeed and direction enemies are turning
-        if (isTurnClockwise)
+        //Look at target
+        Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
+        tf.right = vectorToTarget;
+        animator.SetBool("EnemyAttack", true);
+        if (canAttack == true)
         {
-            tf.Rotate(0, 0, turnSpeed * Time.deltaTime);
+            canAttack = false;
+            coroutine = Recoil();
+            StartCoroutine(coroutine);
         }
-        else
-        {
-            tf.Rotate(0, 0, -turnSpeed * Time.deltaTime);
-        }
+
     }
 
 }

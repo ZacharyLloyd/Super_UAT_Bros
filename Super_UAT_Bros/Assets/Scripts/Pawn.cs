@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
+    //Player parts
     public float speed; //Speed for moving
     public float maxSpeed; //Max Speed
     public float jumpForce; // Amount of jump
@@ -31,7 +32,7 @@ public class Pawn : MonoBehaviour
         Right = 1
     }
 
-
+    //Enemy parts
     //AI Component
     public AISenses senses;
 
@@ -40,8 +41,6 @@ public class Pawn : MonoBehaviour
     {
         Idle,
         Chase,
-        LookAround,
-        GoHome,
         Attack
     }
     public Vector3 homePoint;
@@ -49,12 +48,8 @@ public class Pawn : MonoBehaviour
     public AIStates currentState;
     public float stopChaseDistance;
     public float closeEnough;
-
     public float moveSpeed = 1;
-
-    public GameObject bulletPrefab;
     public bool canAttack = true;
-    public Transform pointOfFire;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -172,23 +167,11 @@ public class Pawn : MonoBehaviour
     {
 
     }
-    public virtual void GoHome()
+    public virtual void MoveTowards(Vector2 target)
     {
 
     }
-    public virtual void LookAround()
-    {
-
-    }
-    public virtual void MoveTowards(Vector3 target)
-    {
-
-    }
-    public virtual void Move(Vector3 direction)
-    {
-
-    }
-    public virtual void Turn(bool isTurnClockwise)
+    public virtual void Move(Transform target)
     {
 
     }

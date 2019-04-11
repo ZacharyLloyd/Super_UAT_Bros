@@ -30,34 +30,24 @@ public class EnemyPawn : Pawn
         MoveTowards(goalPoint);
     }
 
-    public override void GoHome()
+    public override void MoveTowards(Vector2 target)
     {
-        goalPoint = homePoint;
-        MoveTowards(goalPoint);
-    }
-
-    public override void LookAround()
-    {
-        Turn(true);
-    }
-
-    public override void MoveTowards(Vector3 target)
-    {
-        if (Vector3.Distance(tf.position, target) > closeEnough)
+        if (Vector2.Distance(tf.position, target) > closeEnough)
         {
-            //Look at target
-            Vector3 vectorToTarget = target - tf.position;
-            tf.right = vectorToTarget;
-
-            //Move Forward
-            Move(tf.right);
+            tf.Translate(Vector2.right * moveSpeed);
+            Move(GameManager.instance.player.tf);
         }
     }
 
-    public override void Move(Vector3 direction)
+    public override void Move(Transform target)
     {
-        //Move in the direction passed through, at speed "moveSpeed"
-        tf.position += (direction.normalized * moveSpeed * Time.deltaTime);
+        if (target.position.x < tf.position.x)
+        {
+            Flip(DIRECTION.Left);
+        } else if (target.position.x > tf.position.x)
+        {
+            Flip(DIRECTION.Right);
+        }
         animator.SetBool("EnemyWalk", true);
     }
 
