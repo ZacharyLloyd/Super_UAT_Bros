@@ -24,19 +24,31 @@ public class EnemyController : Controller
                 {
                     pawn.currentState = Pawn.AIStates.Chase;
                 }
+                //if (pawn.senses.CanHear(GameManager.instance.player.gameObject))
+                //{
+                //    pawn.currentState = Pawn.AIStates.Chase;
+                //}
                 break;
             case Pawn.AIStates.Chase:
                 pawn.Chase();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 16)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 2)
                 {
                     pawn.currentState = Pawn.AIStates.Attack;
                 }
+                if (!pawn.senses.CanSee(GameManager.instance.player.gameObject))
+                {
+                    pawn.currentState = Pawn.AIStates.Idle;
+                }
+                //if (!pawn.senses.CanHear(GameManager.instance.player.gameObject))
+                //{
+                //    pawn.currentState = Pawn.AIStates.Idle;
+                //}
                 break;
             case Pawn.AIStates.Attack:
                 pawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 24)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 12)
                 {
                     //StopCoroutine(pawn.coroutine);
                     pawn.currentState = Pawn.AIStates.Chase;

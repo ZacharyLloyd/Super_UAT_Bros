@@ -6,6 +6,7 @@ public class AISenses : MonoBehaviour
 {
     public float hearingScale = 1.0f; //How well enemy can hear. 1.0 = normal hearing, otherwise there would be deafness/superhearing
     private Transform tf;
+    public float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,9 @@ public class AISenses : MonoBehaviour
     }
     public bool CanSee(GameObject target)
     {
-        if (Vector3.Distance(target.transform.position, tf.position) < 32)
+        Vector3 length = new Vector3(distance * Mathf.Sign(tf.localScale.x), 0, 0);
+        RaycastHit2D hitInfo = Physics2D.Raycast(tf.position, tf.position + length);
+        if (hitInfo.collider.tag == "Player")
         {
             return true;
         }

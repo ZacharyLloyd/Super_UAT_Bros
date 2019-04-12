@@ -22,6 +22,7 @@ public class EnemyPawn : Pawn
     {
         //Does nothing but play animation
         animator.SetBool("EnemyIdle", true);
+        rb.velocity = Vector2.zero;
     }
 
     public override void Chase()
@@ -55,7 +56,7 @@ public class EnemyPawn : Pawn
     {
         //Look at target
         Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
-        tf.right = vectorToTarget;
+        rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
         animator.SetBool("EnemyAttack", true);
         if (canAttack == true)
         {
