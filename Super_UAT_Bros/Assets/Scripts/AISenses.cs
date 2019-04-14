@@ -5,8 +5,8 @@ using UnityEngine;
 public class AISenses : MonoBehaviour
 {
     public float hearingScale = 1.0f; //How well enemy can hear. 1.0 = normal hearing, otherwise there would be deafness/superhearing
-    private Transform tf;
-    public float distance;
+    private Transform tf; //Creating a variable to hold to transform of the enemy
+    public float distance; //Vairable to change the distance the enemy can see
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +14,7 @@ public class AISenses : MonoBehaviour
         tf = GetComponent<Transform>();
     }
 
-
+    //Function allowing the enemy to hear
     public bool CanHear(GameObject target)
     {
         //If the target does not have a noisemaker we cannot hear them
@@ -32,6 +32,8 @@ public class AISenses : MonoBehaviour
         //Otherwise enemies cannot hear player
         return false;
     }
+
+    //Function to alloow enemy to see
     public bool CanSee(GameObject target)
     {
         Vector3 length = new Vector3(distance * Mathf.Sign(tf.localScale.x), 0, 0);

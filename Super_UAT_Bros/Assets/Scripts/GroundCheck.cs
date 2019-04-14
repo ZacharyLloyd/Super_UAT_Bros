@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tilemap")
         {
-            Player.grounded = true;
-            Player.__animator.SetBool("grounded", Player.grounded);
+            PlayerPawn.__grounded = true;
+            Pawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tilemap")
         {
-            Player.grounded = false;
-            Player.__animator.SetBool("grounded", Player.grounded);
+            PlayerPawn.__grounded = false;
+            Pawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
         }
     }
 

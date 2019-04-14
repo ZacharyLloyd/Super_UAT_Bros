@@ -24,10 +24,21 @@ public class EnemyController : Controller
                 {
                     pawn.currentState = Pawn.AIStates.Chase;
                 }
-                //if (pawn.senses.CanHear(GameManager.instance.player.gameObject))
-                //{
-                //    pawn.currentState = Pawn.AIStates.Chase;
-                //}
+                if (pawn.senses.CanHear(GameManager.instance.player.gameObject))
+                {
+                    pawn.currentState = Pawn.AIStates.LookAround;
+                }
+                break;
+            case Pawn.AIStates.LookAround:
+                pawn.LookAround();
+                if (pawn.senses.CanSee(GameManager.instance.player.gameObject))
+                {
+                    pawn.currentState = Pawn.AIStates.Chase;
+                }
+                if (!pawn.senses.CanHear(GameManager.instance.player.gameObject))
+                {
+                    pawn.currentState = Pawn.AIStates.Idle;
+                }
                 break;
             case Pawn.AIStates.Chase:
                 pawn.Chase();
@@ -40,10 +51,6 @@ public class EnemyController : Controller
                 {
                     pawn.currentState = Pawn.AIStates.Idle;
                 }
-                //if (!pawn.senses.CanHear(GameManager.instance.player.gameObject))
-                //{
-                //    pawn.currentState = Pawn.AIStates.Idle;
-                //}
                 break;
             case Pawn.AIStates.Attack:
                 pawn.Attack();

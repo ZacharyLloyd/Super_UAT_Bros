@@ -19,7 +19,6 @@ public class PlayerController : Controller
     // Update is called once per frame
     void FixedUpdate()
     {
-
         // The player controller gets input from the keyboard and then moves the pawn.
         if (Input.GetKey(right))
             pawn.MoveRight();
@@ -32,12 +31,13 @@ public class PlayerController : Controller
             pawn.animator.SetBool("IsWalking", pawn.isWalking);
         }
 
-        if ((Input.GetKeyDown(jump) && pawn.totalJumps != 0) && (Input.GetKey(right) == false && Input.GetKey(left) == false))
+        if ((Input.GetKeyDown(jump) && PlayerPawn.__totalJumps != 0) && (Input.GetKey(right) == false && Input.GetKey(left) == false))
             pawn.Jump();
 
-        if (pawn.grounded == true)
+        if (PlayerPawn.__grounded == true)
         {
-            pawn.totalJumps = pawn.setValue;
+            PlayerPawn.__totalJumps = PlayerPawn.__setValue;
+            Debug.Log("Refreshed: " + PlayerPawn.__totalJumps);
         }
     }
 }

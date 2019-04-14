@@ -17,19 +17,19 @@ public class EnemyPawn : Pawn
     {
         base.Update();
     }
-
+    //Idle function
     public override void Idle()
     {
         //Does nothing but play animation
         animator.SetBool("EnemyIdle", true);
         rb.velocity = Vector2.zero;
     }
-
+    //Chase function
     public override void Chase()
     {
         MoveTowards(GameManager.instance.player.tf.position);
     }
-
+    //MoveTowards function for enemy to move towards the player
     public override void MoveTowards(Vector2 target)
     {
         
@@ -38,20 +38,20 @@ public class EnemyPawn : Pawn
             Move(GameManager.instance.player.tf);
         }
     }
-
+    //Move function for the enemy so they can move
     public override void Move(Transform target)
     {
         rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
         if (target.position.x < tf.position.x)
         {
-            Flip(DIRECTION.Left);
+            Flip(-1);
         } else if (target.position.x > tf.position.x)
         {
-            Flip(DIRECTION.Right);
+            Flip(1);
         }
         animator.SetBool("EnemyWalk", true);
     }
-
+    //Attack function so the enemy can kill the player
     public override void Attack()
     {
         //Look at target
@@ -66,6 +66,13 @@ public class EnemyPawn : Pawn
         }
 
     }
+    //LookAround function for hearing to transfer to seeing
+    public override void LookAround()
+    {
+
+        Flip(1 * (int)Mathf.Sign(tf.localScale.x));
+    }
+    //Recoil function for the attack function so the enemy has a slight pause between attacks
     IEnumerator Recoil()
     {
         yield return new WaitForSeconds(1f);

@@ -77,13 +77,14 @@ public class Player : MonoBehaviour
     //Moving to the right
     public void MoveRight()
     {
+
         coroutine = Walk();
 
         isWalking = true;
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
 
-        Flip(DIRECTION.Right);
+        Flip(1);
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.velocity += new Vector2(speed, 0);
@@ -103,7 +104,7 @@ public class Player : MonoBehaviour
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
 
-        Flip(DIRECTION.Left);
+        Flip(-1);
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.velocity += new Vector2(-speed, 0);
@@ -128,22 +129,13 @@ public class Player : MonoBehaviour
         --totalJumps;
     }
     //Flipping the image across the Y axis
-    public void Flip(DIRECTION direction)
+    public void Flip(int direction)
     {
         Vector3 xscale;
-        switch (direction)
-        {
-            case DIRECTION.Right:
                 xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Right;
+                xscale.x = (float)direction;
                 gameObject.transform.localScale = xscale;
-                break;
-            case DIRECTION.Left:
-                xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Left;
-                gameObject.transform.localScale = xscale;
-                break;
-        }
+            
     }
     public IEnumerator Walk()
     {

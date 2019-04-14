@@ -5,36 +5,19 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     //Player parts
-    public float speed; //Speed for moving
-    public float maxSpeed; //Max Speed
-    public float jumpForce; // Amount of jump
-    public int totalJumps;
-    public static int __totalJumps; // Number of jumps
-    public static int __setValue; // Set value for number of jumps
-    [HideInInspector] public int setValue;
     [HideInInspector] public bool isWalking; // Is player walking true/false
-    [HideInInspector] public static bool __grounded = false; //Is the player grounded
-    public bool grounded;
     [HideInInspector] public static Animator __animator; //The player's animator
     public Animator animator; // Player's animator
     public Rigidbody2D rb; // Player's rigidbody
-    public Collider2D groundCheck; //Checking if player is grounded
     bool step = false; // Step is for detecting walking to play the sound
-    public Transform tf;
-    public Noisemaker noisemaker;
+    public Transform tf; //Player's transform
+    public Noisemaker noisemaker; //Player's noisemaker
+    public GameObject bulletPrefab; //Player's bullet prefab
+
 
     public IEnumerator coroutine;
-    
-    //Flipping the image with this enumerator
-    public enum DIRECTION
-    {
-        Left = -1,
-        Right = 1
-    }
-
 
     //Enemy parts
-
     //AI Component
     public AISenses senses;
 
@@ -42,6 +25,7 @@ public class Pawn : MonoBehaviour
     public enum AIStates
     {
         Idle,
+        LookAround,
         Chase,
         Attack
     }
@@ -54,12 +38,14 @@ public class Pawn : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-
-        grounded = __grounded;
+        bulletPrefab.tag = "Bullet";
+        
         // Store my senses component
         senses = GetComponent<AISenses>();
 
         tf = GetComponent<Transform>();
+
+        rb = GetComponent<Rigidbody2D>();
 
         // Load noisemaker
         noisemaker = GetComponent<Noisemaker>();
@@ -74,73 +60,26 @@ public class Pawn : MonoBehaviour
     //Moving to the right
     public virtual void MoveRight()
     {
-        coroutine = Walk();
 
-        isWalking = true;
-        //Set up bool for Animator
-        animator.SetBool("IsWalking", isWalking);
-
-        Flip(DIRECTION.Right);
-        if (rb.velocity.magnitude < maxSpeed)
-        {
-            rb.velocity += new Vector2(speed, 0);
-        }
-
-        if (grounded == true) StartCoroutine(coroutine);
-
-        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
-            Jump();
     }
     //Moving to the left
     public virtual void MoveLeft()
     {
-        coroutine = Walk();
 
-        isWalking = true;
-        //Set up bool for Animator
-        animator.SetBool("IsWalking", isWalking);
-
-        Flip(DIRECTION.Left);
-        if (rb.velocity.magnitude < maxSpeed)
-        {
-            rb.velocity += new Vector2(-speed, 0);
-        }
-
-        if (grounded == true) StartCoroutine(coroutine);
-
-        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
-            Jump();
     }
     //Jumping
     public virtual void Jump()
     {
-        coroutine = Walk();
-        StopCoroutine(coroutine);
 
-        maxSpeed = maxSpeed * 2;
-        grounded = false;
-        animator.SetBool("grounded", grounded);
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        FindObjectOfType<AudioManager>().Play("Jumping");
-        --totalJumps;
     }
     //Flipping the image across the Y axis
-    public virtual void Flip(DIRECTION direction)
+    public virtual void Flip(int direction)
     {
         Vector3 xscale;
-        switch (direction)
-        {
-            case DIRECTION.Right:
-                xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Right;
-                gameObject.transform.localScale = xscale;
-                break;
-            case DIRECTION.Left:
-                xscale = gameObject.transform.localScale;
-                xscale.x = (float)DIRECTION.Left;
-                gameObject.transform.localScale = xscale;
-                break;
-        }
+
+        xscale = gameObject.transform.localScale;
+        xscale.x = (float)direction;
+        gameObject.transform.localScale = xscale;
     }
     public IEnumerator Walk()
     {
@@ -173,6 +112,10 @@ public class Pawn : MonoBehaviour
 
     }
     public virtual void Attack()
+    {
+
+    }
+    public virtual void LookAround()
     {
 
     }

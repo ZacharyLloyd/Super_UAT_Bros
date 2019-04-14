@@ -48,8 +48,6 @@ public class GameManager : MonoBehaviour
         ammo = ammoValue;
         ammo = maxAmmo;
         ammoUI.text =  ammo.ToString() + "/" + maxAmmo.ToString();
-
-
     }
 
     // Update is called once per frame
