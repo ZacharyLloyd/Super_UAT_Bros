@@ -112,7 +112,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &47345656
+--- !u!4 &48911607 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5870468938847825456, guid: 8126a43a673de404883b621889f4f417,
+    type: 3}
+  m_PrefabInstance: {fileID: 5870468938866326215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &48911609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5870468938847825470, guid: 8126a43a673de404883b621889f4f417,
+    type: 3}
+  m_PrefabInstance: {fileID: 5870468938866326215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fc8a515198baf448f60d06582c0219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &48911613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5870468938847825466, guid: 8126a43a673de404883b621889f4f417,
+    type: 3}
+  m_PrefabInstance: {fileID: 5870468938866326215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29005ce555a36654a9f515272e3825f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!21 &97013349
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -258,36 +288,6 @@ Material:
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!4 &48911607 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5870468938847825456, guid: 8126a43a673de404883b621889f4f417,
-    type: 3}
-  m_PrefabInstance: {fileID: 5870468938866326215}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &48911609 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5870468938847825470, guid: 8126a43a673de404883b621889f4f417,
-    type: 3}
-  m_PrefabInstance: {fileID: 5870468938866326215}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fc8a515198baf448f60d06582c0219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &48911613 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5870468938847825466, guid: 8126a43a673de404883b621889f4f417,
-    type: 3}
-  m_PrefabInstance: {fileID: 5870468938866326215}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29005ce555a36654a9f515272e3825f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &104132980
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 47345656}
+  m_Material: {fileID: 97013349}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_spriteAsset: {fileID: 0}
   m_material: {fileID: 0}
-  m_sharedMaterial: {fileID: 47345656}
+  m_sharedMaterial: {fileID: 97013349}
   m_isDefaultMaterial: 0
   m_padding: 0.5
   m_canvasRenderer: {fileID: 104132983}
@@ -793,6 +793,8 @@ GameObject:
   m_Component:
   - component: {fileID: 855028599}
   - component: {fileID: 855028598}
+  - component: {fileID: 855028601}
+  - component: {fileID: 855028600}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -862,6 +864,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855028600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855028597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf4bc236c3888043950f034f30f7e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value_x: -8
+  value_y: -3
+  scene_name: Level 2
+  allowSpawn: 1
+  player: {fileID: 5870468938847825470, guid: 8126a43a673de404883b621889f4f417, type: 3}
+--- !u!61 &855028601
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855028597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.5}
+    newSize: {x: 1, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5}
+  m_EdgeRadius: 0
 --- !u!1 &893221368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5924793658370109005, guid: c3ffb9f2ef9778747aeff1d0de8e9dff,
@@ -6458,6 +6503,10 @@ MonoBehaviour:
   ammoUI: {fileID: 250460141}
   enemy: {fileID: 893221368}
   enemiesKilled: 0
+  playerPrefab: {fileID: 0}
+  Scene_Name: 
+  posx: 0
+  posy: 0
 --- !u!4 &2116410863
 Transform:
   m_ObjectHideFlags: 0
