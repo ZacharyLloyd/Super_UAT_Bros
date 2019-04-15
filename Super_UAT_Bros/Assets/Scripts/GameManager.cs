@@ -20,9 +20,18 @@ public class GameManager : MonoBehaviour
     public float maxAmmo;
     public TextMeshProUGUI ammoUI;
 
-
     public GameObject enemy;
     public float enemiesKilled = 0;
+
+    public GameObject playerPrefab;
+
+    private Player_Spawn Player;
+
+    [Header("Destination")]
+    public string Scene_Name;
+
+    [Header("Set Position")]
+    public float posx, posy;
 
     //Awake runs before all Starts
     private void Awake()
@@ -63,6 +72,14 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
+    public void Goto_Scene(string scene_name)
+    {
+        scene_name = Scene_Name;
+        if (scene_name != null) SceneManager.LoadScene(scene_name);
+
+    }
+
     //Using ammo UI
     public void UseAmmo()
     {
