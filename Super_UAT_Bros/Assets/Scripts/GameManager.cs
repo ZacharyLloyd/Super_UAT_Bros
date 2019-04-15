@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerPrefab;
 
-    private Player_Spawn Player;
+    private Player_Spawn playerSpawn;
 
     [Header("Destination")]
     public string Scene_Name;
