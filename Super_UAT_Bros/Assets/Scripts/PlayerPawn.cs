@@ -59,7 +59,16 @@ public class PlayerPawn : Pawn
         if (grounded == true)
         {
             totalJumps = setValue;
-            Debug.Log("Refreshed: " + totalJumps);
+        }
+
+        if (GameManager.instance.currentHealth == 0)
+        {
+            GameManager.instance.GUI_ACTIVE = false;
+            GameManager.instance.healthUIParent.gameObject.SetActive(GameManager.instance.GUI_ACTIVE);
+            GameManager.instance.Scene_Name = "Lose Screen";
+            SceneManager.LoadScene(GameManager.instance.Scene_Name);
+            Destroy(gameObject);
+
         }
     }
 
@@ -124,5 +133,12 @@ public class PlayerPawn : Pawn
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         FindObjectOfType<AudioManager>().Play("Jumping");
         --totalJumps;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameManager.instance.DecreaseHealth(1);
+        }
     }
 }
