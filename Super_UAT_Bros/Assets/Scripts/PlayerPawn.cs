@@ -18,6 +18,8 @@ public class PlayerPawn : Pawn
     public float MoveVolume; //MoveVolume for noisemaker
     public Collider2D groundCheck; //Checking if player is grounded
 
+    int i = 1;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -60,7 +62,7 @@ public class PlayerPawn : Pawn
         {
             totalJumps = setValue;
         }
-
+        //Losing
         if (GameManager.instance.currentHealth == 0)
         {
             GameManager.instance.GUI_ACTIVE = false;
@@ -68,6 +70,16 @@ public class PlayerPawn : Pawn
             GameManager.instance.Scene_Name = "Lose Screen";
             SceneManager.LoadScene(GameManager.instance.Scene_Name);
             Destroy(gameObject);
+        }
+        //Winning
+        else if (GameManager.instance.Scene_Name == "Win Screen" && i == 1)
+        {
+            GameManager.instance.GUI_ACTIVE = false;
+            GameManager.instance.healthUIParent.gameObject.SetActive(GameManager.instance.GUI_ACTIVE);
+            GameManager.instance.Scene_Name = "Win Screen";
+            SceneManager.LoadScene(GameManager.instance.Scene_Name);
+            Destroy(gameObject);
+            i = 0;
 
         }
     }

@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ammoUI;
 
     public GameObject enemy;
-    public float enemiesKilled = 0;
 
     public GameObject playerPrefab;
 
@@ -71,12 +70,6 @@ public class GameManager : MonoBehaviour
 
         if (ammo != 0)
             if (Input.GetKeyDown(KeyCode.Space)) UseAmmo();
-
-
-        if (enemiesKilled >= 4)
-        {
-            SceneManager.LoadScene(2);
-        }
     }
 
     public void Goto_Scene(string scene_name)

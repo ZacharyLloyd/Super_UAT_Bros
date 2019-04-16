@@ -37,7 +37,6 @@ public class PlayerController : Controller
         if (PlayerPawn.__grounded == true)
         {
             PlayerPawn.__totalJumps = PlayerPawn.__setValue;
-            Debug.Log("Refreshed: " + PlayerPawn.__totalJumps);
         }
     }
 }

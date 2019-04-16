@@ -85,7 +85,6 @@ public class EnemyPawn : Pawn
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            ++GameManager.instance.enemiesKilled;
             Destroy(gameObject);
         }
     }
