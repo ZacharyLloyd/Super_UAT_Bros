@@ -150,7 +150,7 @@ public class PlayerPawn : Pawn
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            GameManager.instance.DecreaseHealth(1);
+            GameManager.instance.DecreaseHealth(5);
         }
     }
 }

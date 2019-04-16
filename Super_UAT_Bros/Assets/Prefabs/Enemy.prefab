@@ -146,14 +146,16 @@ MonoBehaviour:
   animator: {fileID: 5924793658370109006}
   rb: {fileID: 5924793658370109001}
   tf: {fileID: 0}
-  noisemaker: {fileID: 0}
+  noisemaker: {fileID: 5870468938847825466, guid: 8126a43a673de404883b621889f4f417,
+    type: 3}
   bulletPrefab: {fileID: 4518377274224217031, guid: b2fde97af0fcb0143958690e8f835aa7,
     type: 3}
   senses: {fileID: 5924793658370109003}
   currentState: 0
   closeEnough: 2
-  moveSpeed: 2
+  moveSpeed: 4
   canAttack: 0
+  winning: {fileID: 0}
 --- !u!114 &5924793658370109002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hearingScale: 32
-  distance: 32
+  distance: 48
 --- !u!50 &5924793658370109001
 Rigidbody2D:
   serializedVersion: 4

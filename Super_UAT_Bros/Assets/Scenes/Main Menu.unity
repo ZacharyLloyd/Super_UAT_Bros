@@ -585,7 +585,7 @@ MonoBehaviour:
   healthUI: {fileID: 1169817683}
   currentHealth: 100
   maxHealth: 100
-  damage: 1
+  damage: 5
   ammoValue: 30
   maxAmmo: 30
   ammoUI: {fileID: 1511029199}

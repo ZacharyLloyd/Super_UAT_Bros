@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPawn : Pawn
 {
-    public Winning winning;
+    [HideInInspector]public Winning winning;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -24,6 +24,8 @@ public class EnemyPawn : Pawn
     {
         //Does nothing but play animation
         animator.SetBool("EnemyIdle", true);
+        animator.SetBool("EnemyWalk", false);
+        animator.SetBool("EnemyAttack", false);
         rb.velocity = Vector2.zero;
     }
     //Chase function
@@ -62,13 +64,6 @@ public class EnemyPawn : Pawn
         rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
         animator.SetBool("EnemyWalk", false);
         animator.SetBool("EnemyAttack", true);
-        //if (canAttack == true)
-        //{
-        //    canAttack = false;
-        //    coroutine = Recoil();
-        //    StartCoroutine(coroutine);
-        //}
-
     }
     //LookAround function for hearing to transfer to seeing
     public override void LookAround()
