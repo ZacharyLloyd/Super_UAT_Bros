@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyPawn : Pawn
 {
+    //[HideInInspector] public static Animator __animator; //The enemy's animator
+    //public Animator animator; // Enemy's animator
     [HideInInspector]public Winning winning;
     // Start is called before the first frame update
     public override void Start()

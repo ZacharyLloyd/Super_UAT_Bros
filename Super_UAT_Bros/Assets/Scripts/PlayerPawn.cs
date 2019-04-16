@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerPawn : Pawn
 {
-
+    //[HideInInspector] public static Animator __animator; //The player's animator
+    //public Animator animator; // Player's animator
     public int totalJumps;
     public static int __totalJumps; // Number of jumps
     public static int __setValue; // Set value for number of jumps

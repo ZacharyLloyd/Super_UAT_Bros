@@ -10,7 +10,7 @@ public class GroundCheck : MonoBehaviour
         if (collision.gameObject.name == "Tilemap")
         {
             PlayerPawn.__grounded = true;
-            Pawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
+            PlayerPawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -18,7 +18,7 @@ public class GroundCheck : MonoBehaviour
         if (collision.gameObject.name == "Tilemap")
         {
             PlayerPawn.__grounded = false;
-            Pawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
+            PlayerPawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
         }
     }
 

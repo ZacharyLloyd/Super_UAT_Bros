@@ -13,8 +13,6 @@ public class Pawn : MonoBehaviour
     public Transform tf; //Player's transform
     public Noisemaker noisemaker; //Player's noisemaker
     public GameObject bulletPrefab; //Player's bullet prefab
-
-
     public IEnumerator coroutine;
 
     //Enemy parts
