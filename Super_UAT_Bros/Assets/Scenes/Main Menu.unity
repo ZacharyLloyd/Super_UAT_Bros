@@ -590,7 +590,6 @@ MonoBehaviour:
   maxAmmo: 30
   ammoUI: {fileID: 1511029199}
   enemy: {fileID: 5924793658370109005, guid: c3ffb9f2ef9778747aeff1d0de8e9dff, type: 3}
-  enemiesKilled: 0
   playerPrefab: {fileID: 5870468938847825458, guid: 8126a43a673de404883b621889f4f417,
     type: 3}
   Scene_Name: Level 1
