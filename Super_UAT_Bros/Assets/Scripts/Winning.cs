@@ -24,4 +24,7 @@ public class Winning : MonoBehaviour
            
         }
     }
+    private void FixedUpdate()
+    {
+    }
 }

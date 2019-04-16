@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyPawn : Pawn
 {
+    public Winning winning;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         canAttack = true;
 
+        winning = FindObjectOfType<Winning>();
     }
 
     // Update is called once per frame
@@ -74,18 +76,15 @@ public class EnemyPawn : Pawn
 
         Flip(1 * (int)Mathf.Sign(tf.localScale.x));
     }
-    //Recoil function for the attack function so the enemy has a slight pause between attacks
-    IEnumerator Recoil()
-    {
-        yield return new WaitForSeconds(1f);
-        canAttack = true;
-    }
     //Destroying enemy
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            FindObjectOfType<Winning>().enemiesToBeKilled--;
+            if (winning != null)
+            {
+                winning.enemiesToBeKilled--;
+            }
             Destroy(gameObject);
         }
     }
