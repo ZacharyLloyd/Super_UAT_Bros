@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     [Header("Set Position")]
     public float posx, posy;
 
+    [Header("Game UI")]
+    public RawImage healthUIParent; // This is just the background interface
+    public bool GUI_ACTIVE;
+
     //Awake runs before all Starts
     private void Awake()
     {

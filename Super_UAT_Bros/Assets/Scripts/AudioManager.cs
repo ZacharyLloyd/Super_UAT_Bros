@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     //Called before the first frame
     void Awake()
     {
+        DontDestroyOnLoad(this);
         foreach (Audio a in getAudio)
         {
             a.source = gameObject.AddComponent<AudioSource>();
