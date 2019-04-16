@@ -290,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &601992481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,9 +593,9 @@ MonoBehaviour:
   enemiesKilled: 0
   playerPrefab: {fileID: 5870468938847825458, guid: 8126a43a673de404883b621889f4f417,
     type: 3}
-  Scene_Name: 
-  posx: 0
-  posy: 0
+  Scene_Name: Level 1
+  posx: -6.99
+  posy: -1.98808
   healthUIParent: {fileID: 1865131661}
   GUI_ACTIVE: 0
 --- !u!4 &1046243100
@@ -1272,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1865131660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1443,6 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6dd1b879bacf754c8d6390fc205cbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_spawn: {fileID: 770393329}
 --- !u!1 &2029656547
 GameObject:
   m_ObjectHideFlags: 0

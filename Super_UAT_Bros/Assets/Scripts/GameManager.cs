@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Set our GUI value to our GUI_ACTIVE boolean
+        healthUIParent.gameObject.SetActive(GUI_ACTIVE);
 
         if (ammo != 0)
             if (Input.GetKeyDown(KeyCode.Space)) UseAmmo();

@@ -5,11 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public Player_Spawn player_spawn;
 
     //Play the game or play again
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        //Set starting position!!!
+        GameManager.instance.Scene_Name = "Level 1";
+        GameManager.instance.posx = -6.89732f;
+        GameManager.instance.posy = -1.98808f;
+
+        //player = FindObjectOfType<Player>();
+        player_spawn.gameObject.SetActive(true);
+        GameManager.instance.GUI_ACTIVE = true;
+        GameManager.instance.Goto_Scene(GameManager.instance.Scene_Name);
+        GameManager.instance.currentHealth = GameManager.instance.maxHealth;
+        GameManager.instance.healthUI.fillAmount = GameManager.instance.currentHealth / GameManager.instance.maxHealth;
+        Instantiate(GameManager.instance.playerPrefab);
+    
+    SceneManager.LoadScene(1);
     }
     //Quit the game
     public void Quit()

@@ -49,6 +49,7 @@ public class EnemyPawn : Pawn
         {
             Flip(1);
         }
+        animator.SetBool("EnemyIdle", false);
         animator.SetBool("EnemyWalk", true);
     }
     //Attack function so the enemy can kill the player
@@ -57,13 +58,14 @@ public class EnemyPawn : Pawn
         //Look at target
         Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
         rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
+        animator.SetBool("EnemyWalk", false);
         animator.SetBool("EnemyAttack", true);
-        if (canAttack == true)
-        {
-            canAttack = false;
-            coroutine = Recoil();
-            StartCoroutine(coroutine);
-        }
+        //if (canAttack == true)
+        //{
+        //    canAttack = false;
+        //    coroutine = Recoil();
+        //    StartCoroutine(coroutine);
+        //}
 
     }
     //LookAround function for hearing to transfer to seeing
