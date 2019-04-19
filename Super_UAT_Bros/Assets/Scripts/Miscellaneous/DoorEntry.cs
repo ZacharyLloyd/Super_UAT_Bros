@@ -12,11 +12,11 @@ public class DoorEntry : MonoBehaviour
     public string scene_name;
     public bool allowSpawn = true;
 
-    public Player player;
+    public PlayerPawn player;
 
     private void Awake()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerPawn>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -33,7 +33,7 @@ public class PlayerPawn : Pawn
 
         animator = GetComponent<Animator>();
 
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
 
         setValue = totalJumps;
     }
