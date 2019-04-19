@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 5870468938847825466}
   - component: {fileID: 5870468938847825464}
   - component: {fileID: 5870468938847825465}
-  - component: {fileID: 5870468938847825470}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -218,6 +217,7 @@ MonoBehaviour:
   jumpForce: 20
   MoveVolume: 5
   groundCheck: {fileID: 5870468939870986093}
+  controller: {fileID: 5870468938847825465}
 --- !u!114 &5870468938847825465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,26 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 5870468938847825464}
---- !u!114 &5870468938847825470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870468938847825458}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fc8a515198baf448f60d06582c0219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.75
-  maxSpeed: 3
-  jumpForce: 20
-  totalJumps: 2
-  setValue: 0
-  isWalking: 0
-  groundCheck: {fileID: 5870468939870986093}
-  tf: {fileID: 5870468938847825456}
   right: 100
   left: 97
   jump: 106

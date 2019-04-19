@@ -15,6 +15,8 @@ public class Pawn : MonoBehaviour
     public GameObject bulletPrefab; //Player's bullet prefab
     public IEnumerator coroutine;
 
+    public PlayerController controller;
+
     //Enemy parts
     //AI Component
     public AISenses senses;
@@ -44,6 +46,8 @@ public class Pawn : MonoBehaviour
         tf = GetComponent<Transform>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        controller = GetComponent<PlayerController>();
 
         // Load noisemaker
         noisemaker = GetComponent<Noisemaker>();

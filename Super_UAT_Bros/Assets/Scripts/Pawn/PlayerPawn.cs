@@ -33,7 +33,7 @@ public class PlayerPawn : Pawn
 
         animator = GetComponent<Animator>();
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
 
         setValue = totalJumps;
     }
@@ -43,9 +43,9 @@ public class PlayerPawn : Pawn
     {
         base.Update();
         grounded = __grounded;
-        if (Input.GetKey(PlayerController.right))
+        if (Input.GetKey(controller.right))
             MoveRight();
-        else if (Input.GetKey(PlayerController.left))
+        else if (Input.GetKey(controller.left))
             MoveLeft();
         else
         {
@@ -54,7 +54,7 @@ public class PlayerPawn : Pawn
             animator.SetBool("IsWalking", isWalking);
         }
 
-        if ((Input.GetKeyDown(PlayerController.jump) && totalJumps != 0) && (Input.GetKey(PlayerController.right) == false && Input.GetKey(PlayerController.left) == false))
+        if ((Input.GetKeyDown(controller.jump) && totalJumps != 0) && (Input.GetKey(controller.right) == false && Input.GetKey(controller.left) == false))
         {
             Jump();
         }
@@ -104,7 +104,7 @@ public class PlayerPawn : Pawn
 
         if (grounded == true) StartCoroutine(coroutine);
 
-        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
+        if (Input.GetKeyDown(controller.jump) && totalJumps != 0)
             Jump();
     }
     //Moving to the left
@@ -128,7 +128,7 @@ public class PlayerPawn : Pawn
 
         if (grounded == true) StartCoroutine(coroutine);
 
-        if (Input.GetKeyDown(PlayerController.jump) && totalJumps != 0)
+        if (Input.GetKeyDown(controller.jump) && totalJumps != 0)
             Jump();
     }
     public override void Jump()

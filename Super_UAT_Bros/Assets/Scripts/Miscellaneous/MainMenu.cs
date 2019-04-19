@@ -7,6 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     public Player_Spawn player_spawn;
 
+
+    private void Update()
+    {
+        if (player_spawn == null)
+        {
+            player_spawn = FindObjectOfType<Player_Spawn>();
+        }
+    }
     //Play the game or play again
     public void Play()
     {

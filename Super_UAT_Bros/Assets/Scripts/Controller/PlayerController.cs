@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class PlayerController : Controller
 {
-
+    public static PlayerController controller;
+    public PlayerPawn player;
     //Mapping Movement to selected keys
-    public static KeyCode right = KeyCode.D;
-    public static KeyCode left = KeyCode.A;
-    public static KeyCode jump = KeyCode.J;
+    public KeyCode right = KeyCode.D;
+    public KeyCode left = KeyCode.A;
+    public KeyCode jump = KeyCode.J;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start(); //Calling the parent start function
+        if (controller == null)
+            controller = this;
+        player = FindObjectOfType<PlayerPawn>();
     }
 
     // Update is called once per frame

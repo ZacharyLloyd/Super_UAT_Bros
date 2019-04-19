@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     //Singleton
     public static GameManager instance;
     public Transform tf;
-    public Player player;
+    public PlayerPawn player;
     public Image healthUI;
     public float currentHealth;
     public float maxHealth;

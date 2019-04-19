@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 0}
-  player: {fileID: 5870468938847825470, guid: 8126a43a673de404883b621889f4f417, type: 3}
+  player: {fileID: 5870468938847825464, guid: 8126a43a673de404883b621889f4f417, type: 3}
   healthUI: {fileID: 1169817683}
   currentHealth: 100
   maxHealth: 100
@@ -610,7 +610,7 @@ Transform:
   m_Children:
   - {fileID: 601992484}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050824122
 GameObject:
@@ -1252,7 +1252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865131659
 GameObject:

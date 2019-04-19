@@ -307,7 +307,7 @@ MonoBehaviour:
   value_y: -3
   scene_name: Level 2
   allowSpawn: 1
-  player: {fileID: 5870468938847825470, guid: 8126a43a673de404883b621889f4f417, type: 3}
+  player: {fileID: 0}
 --- !u!61 &855028601
 BoxCollider2D:
   m_ObjectHideFlags: 0
