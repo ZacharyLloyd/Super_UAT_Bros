@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5870468938847825466}
   - component: {fileID: 5870468938847825464}
   - component: {fileID: 5870468938847825465}
+  - component: {fileID: 5401353664256378216}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -204,6 +205,7 @@ MonoBehaviour:
   noisemaker: {fileID: 5870468938847825466}
   bulletPrefab: {fileID: 4518377274224217031, guid: b2fde97af0fcb0143958690e8f835aa7,
     type: 3}
+  controller: {fileID: 5870468938847825465}
   senses: {fileID: 0}
   currentState: 0
   closeEnough: 0
@@ -217,7 +219,6 @@ MonoBehaviour:
   jumpForce: 20
   MoveVolume: 5
   groundCheck: {fileID: 5870468939870986093}
-  controller: {fileID: 5870468938847825465}
 --- !u!114 &5870468938847825465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,9 +232,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 5870468938847825464}
+  player: {fileID: 0}
   right: 100
   left: 97
   jump: 106
+--- !u!114 &5401353664256378216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870468938847825458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e1ef51cdd0d624088276d3748e6da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comments: 'Reference:
+
+    https://opengameart.org/content/2d-hero
+
+'
 --- !u!1 &5870468939870986080
 GameObject:
   m_ObjectHideFlags: 0
