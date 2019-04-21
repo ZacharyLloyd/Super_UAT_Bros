@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerPawn : Pawn
 {
-    //[HideInInspector] public static Animator __animator; //The player's animator
-    //public Animator animator; // Player's animator
-    public int totalJumps;
-    public static int __totalJumps; // Number of jumps
-    public static int __setValue; // Set value for number of jumps
-    [HideInInspector] public int setValue;
+    public int totalJumps; // Setting number of jumps
+    public static int __totalJumps; // Number of jumps that is actually taken
+    public static int __setValue; // Value for number of jumps that is actually taken
+    [HideInInspector] public int setValue; //Setting the set value of jumps
     [HideInInspector] public static bool __grounded = true; //Is the player grounded
     public bool grounded;
     public float speed; //Speed for moving
@@ -19,7 +17,7 @@ public class PlayerPawn : Pawn
     public float MoveVolume; //MoveVolume for noisemaker
     public Collider2D groundCheck; //Checking if player is grounded
 
-    int i = 1;
+    int i = 1; //Used for flipping the character
 
     // Start is called before the first frame update
     public override void Start()
@@ -85,6 +83,7 @@ public class PlayerPawn : Pawn
         }
     }
 
+    //Having the player move right
     public override void MoveRight()
     {
         if (noisemaker != null)
@@ -96,6 +95,7 @@ public class PlayerPawn : Pawn
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
 
+        //Flipping the player across the Y axis
         Flip(1);
         if (rb.velocity.magnitude < maxSpeed)
         {
@@ -107,6 +107,7 @@ public class PlayerPawn : Pawn
         if (Input.GetKeyDown(controller.jump) && totalJumps != 0)
             Jump();
     }
+
     //Moving to the left
     public override void MoveLeft()
     {
@@ -120,6 +121,7 @@ public class PlayerPawn : Pawn
         //Set up bool for Animator
         animator.SetBool("IsWalking", isWalking);
 
+        //Flipping the player over the Y axis
         Flip(-1);
         if (rb.velocity.magnitude < maxSpeed)
         {
@@ -131,6 +133,8 @@ public class PlayerPawn : Pawn
         if (Input.GetKeyDown(controller.jump) && totalJumps != 0)
             Jump();
     }
+
+    //How the player jumps
     public override void Jump()
     {
         if (noisemaker != null)
@@ -147,11 +151,28 @@ public class PlayerPawn : Pawn
         FindObjectOfType<AudioManager>().Play("Jumping");
         --totalJumps;
     }
+
+    //Collision with enemy to player for the player to die/loss health
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             GameManager.instance.DecreaseHealth(5);
+        }
+    }
+
+    //Adding health and ammo
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Health")
+        {
+            GameManager.instance.IncreaseHealth(50);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Ammo")
+        {
+            GameManager.instance.IncreaseAmmo(10);
+            Destroy(collision.gameObject);
         }
     }
 }

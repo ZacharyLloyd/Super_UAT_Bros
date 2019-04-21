@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //Singleton
-    public static GameManager instance;
+    public static GameManager instance; //Singleton
     public Transform tf;
     public PlayerPawn player;
     public Image healthUI;
@@ -70,8 +69,15 @@ public class GameManager : MonoBehaviour
 
         if (ammo != 0)
             if (Input.GetKeyDown(KeyCode.Space)) UseAmmo();
+        
+        if (ammo >= maxAmmo)
+        {
+            ammo = maxAmmo;
+            ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
+        }
     }
 
+    //This is used for switching scenes/levels
     public void Goto_Scene(string scene_name)
     {
         scene_name = Scene_Name;
@@ -85,6 +91,8 @@ public class GameManager : MonoBehaviour
         --ammo;
         ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
     }
+
+    //Decreasing the player's health
     public void DecreaseHealth(float damage)
     {
         if (healthUI.fillAmount != 0)
@@ -93,5 +101,26 @@ public class GameManager : MonoBehaviour
             currentHealth = healthUI.fillAmount;
         }
         else SceneManager.LoadScene(3);
+    }
+
+    //Increasing the player's health
+    public void IncreaseHealth(float heal)
+    {
+        if (healthUI.fillAmount != 1)
+        {
+            healthUI.fillAmount += heal / maxHealth;
+            currentHealth = healthUI.fillAmount;
+        }
+
+    }
+
+    //Increasing the player's ammo
+    public void IncreaseAmmo(float addAmmo)
+    {
+        if (ammo != maxAmmo)
+        {
+            ammo += addAmmo;
+            ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
+        }
     }
 }
