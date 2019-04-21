@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class EnemyPawn : Pawn
 {
+    //FSM
+    public enum AIStates
+    {
+        Idle,
+        LookAround,
+        Chase,
+        Attack
+    }
+
+    public AIStates currentState;
+
     //[HideInInspector] public static Animator __animator; //The enemy's animator
     //public Animator animator; // Enemy's animator
     [HideInInspector]public Winning winning;

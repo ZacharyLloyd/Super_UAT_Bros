@@ -153,10 +153,10 @@ MonoBehaviour:
     type: 3}
   controller: {fileID: 0}
   senses: {fileID: 5924793658370109003}
-  currentState: 0
   closeEnough: 2
   moveSpeed: 4
   canAttack: 0
+  currentState: 0
   winning: {fileID: 0}
 --- !u!114 &5924793658370109002
 MonoBehaviour:
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 5924793658370108853}
+  animator: {fileID: 5924793658370109006}
+  epawn: {fileID: 5924793658370108853}
 --- !u!114 &5924793658370109003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,9 +200,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

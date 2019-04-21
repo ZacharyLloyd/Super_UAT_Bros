@@ -1,28 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class EnemyController : Controller
 {
+    bool isIdle = false; //Setting a bool for enemy idle
+    bool isWalking = false; //Setting a bool for enemy walking
+    bool isAttacking = false; //Setting a bool for enemy attacking
+
+    public Animator animator; //Setting a variable to refernece the animator
+    public EnemyPawn epawn; //Setting a variable to reference the EnemyPawn
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        epawn = GetComponent<EnemyPawn>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        pawn.animator.SetBool("EnemyIdle", isIdle); //Setting the bool for the animation
+        pawn.animator.SetBool("EnemyWalk", isWalking); //Setting the bool for the animation
+        pawn.animator.SetBool("EnemyAttack", isAttacking); //Setting the bool for the animation
+
         //AI states are based on enum values
-        switch (pawn.currentState)
+        switch (epawn.currentState)
         {
-            case Pawn.AIStates.Idle:
-                pawn.Idle();
+            case EnemyPawn.AIStates.Idle:
+                epawn.Idle();
 
                 //Check for transitions
-                if (pawn.senses.CanSee(GameManager.instance.player.gameObject))
+                if (epawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {
-                    pawn.currentState = Pawn.AIStates.Chase;
+                    isWalking = true;
+                    epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
                 //if (pawn.senses.CanHear(GameManager.instance.player.gameObject))
                 //{
@@ -40,25 +54,28 @@ public class EnemyController : Controller
             //        pawn.currentState = Pawn.AIStates.Idle;
             //    }
             //    break;
-            case Pawn.AIStates.Chase:
+            case EnemyPawn.AIStates.Chase:
                 pawn.Chase();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 12)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 32)
                 {
-                    pawn.currentState = Pawn.AIStates.Attack;
+                    isAttacking = true;
+                    epawn.currentState = EnemyPawn.AIStates.Attack;
                 }
                 if (!pawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {
-                    pawn.currentState = Pawn.AIStates.Idle;
+                    isIdle = true;
+                    epawn.currentState = EnemyPawn.AIStates.Idle;
                 }
                 break;
-            case Pawn.AIStates.Attack:
+            case EnemyPawn.AIStates.Attack:
                 pawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 24)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 64)
                 {
+                    isWalking = true;
                     //StopCoroutine(pawn.coroutine);
-                    pawn.currentState = Pawn.AIStates.Chase;
+                    epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
                 break;
         }

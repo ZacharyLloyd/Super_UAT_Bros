@@ -21,16 +21,9 @@ public class Pawn : MonoBehaviour
     //AI Component
     public AISenses senses;
 
-    //FSM
-    public enum AIStates
-    {
-        Idle,
-        LookAround,
-        Chase,
-        Attack
-    }
 
-    public AIStates currentState;
+
+
     public float closeEnough;
     public float moveSpeed = 1;
     public bool canAttack = false;
