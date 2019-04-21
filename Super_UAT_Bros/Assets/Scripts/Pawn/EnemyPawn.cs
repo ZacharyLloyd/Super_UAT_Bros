@@ -93,6 +93,7 @@ public class EnemyPawn : Pawn
             {
                 winning.enemiesToBeKilled--;
             }
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
