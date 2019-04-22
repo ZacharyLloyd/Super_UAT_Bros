@@ -21,7 +21,7 @@ public class Winning : MonoBehaviour
             GameManager.instance.healthUIParent.gameObject.SetActive(GameManager.instance.GUI_ACTIVE);
             GameManager.instance.Scene_Name = "Win Screen";
             SceneManager.LoadScene(GameManager.instance.Scene_Name);
-           
+            AudioManager.mastersounds.Stop("Music");
         }
     }
     private void FixedUpdate()

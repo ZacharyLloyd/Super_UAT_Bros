@@ -521,21 +521,27 @@ MonoBehaviour:
   getAudio:
   - name: Walking
     clip: {fileID: 8300000, guid: b7bdc320f9a766d47ada829ec9a288c0, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     enableLoop: 0
     source: {fileID: 0}
   - name: Jumping
     clip: {fileID: 8300000, guid: 092c16fb53ce91f41b4409b7ec8f5513, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     enableLoop: 0
     source: {fileID: 0}
   - name: Shooting
     clip: {fileID: 8300000, guid: 20535294535871748ac397935ed8b652, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     enableLoop: 0
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: f0a881faecc22f44ea10edf0de4644c5, type: 3}
+    volume: 1
+    pitch: 1
+    enableLoop: 1
     source: {fileID: 0}
 --- !u!4 &846059333
 Transform:

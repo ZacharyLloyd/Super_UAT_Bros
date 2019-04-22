@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.currentHealth = GameManager.instance.maxHealth;
         GameManager.instance.healthUI.fillAmount = GameManager.instance.currentHealth / GameManager.instance.maxHealth;
         Instantiate(GameManager.instance.playerPrefab);
+        AudioManager.mastersounds.Play("Music");
     
     SceneManager.LoadScene(1);
     }
