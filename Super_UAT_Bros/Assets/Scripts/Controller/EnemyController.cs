@@ -22,9 +22,9 @@ public class EnemyController : Controller
     // Update is called once per frame
     void Update()
     {
-        pawn.animator.SetBool("EnemyIdle", isIdle); //Setting the bool for the animation
-        pawn.animator.SetBool("EnemyWalk", isWalking); //Setting the bool for the animation
-        pawn.animator.SetBool("EnemyAttack", isAttacking); //Setting the bool for the animation
+        epawn.animator.SetBool("EnemyIdle", isIdle); //Setting the bool for the animation
+        epawn.animator.SetBool("EnemyWalk", isWalking); //Setting the bool for the animation
+        epawn.animator.SetBool("EnemyAttack", isAttacking); //Setting the bool for the animation
 
         //AI states are based on enum values
         switch (epawn.currentState)
@@ -58,14 +58,14 @@ public class EnemyController : Controller
                 break;
             //Chase state
             case EnemyPawn.AIStates.Chase:
-                pawn.Chase();
+                epawn.Chase();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 24)
+                if (Vector2.Distance(epawn.tf.position, GameManager.instance.player.tf.position) < 8)
                 {
                     isAttacking = true;
                     epawn.currentState = EnemyPawn.AIStates.Attack;
                 }
-                if (!pawn.senses.CanSee(GameManager.instance.player.gameObject))
+                if (!epawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {
                     isIdle = true;
                     epawn.currentState = EnemyPawn.AIStates.Idle;
@@ -73,12 +73,11 @@ public class EnemyController : Controller
                 break;
             //Attack state
             case EnemyPawn.AIStates.Attack:
-                pawn.Attack();
+                epawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 48)
+                if (Vector3.Distance(epawn.tf.position, GameManager.instance.player.tf.position) > 16)
                 {
                     isWalking = true;
-                    //StopCoroutine(pawn.coroutine);
                     epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
                 break;

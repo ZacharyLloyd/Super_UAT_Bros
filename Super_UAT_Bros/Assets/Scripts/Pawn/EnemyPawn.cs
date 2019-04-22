@@ -52,7 +52,7 @@ public class EnemyPawn : Pawn
     public override void MoveTowards(Vector2 target)
     {
         
-        if (Vector2.Distance(tf.position, target) > closeEnough)
+        if (Vector2.Distance(tf.position, target) <= closeEnough)
         {
             Move(GameManager.instance.player.tf);
         }
@@ -60,7 +60,8 @@ public class EnemyPawn : Pawn
     //Move function for the enemy so they can move
     public override void Move(Transform target)
     {
-        rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
+        Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
+        rb.velocity = playerTarget;
         if (target.position.x < tf.position.x)
         {
             Flip(-1);
@@ -75,8 +76,9 @@ public class EnemyPawn : Pawn
     public override void Attack()
     {
         //Look at target
-        Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
-        rb.velocity = new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
+        //Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
+        Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
+        rb.velocity = playerTarget;/*new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);*/
         animator.SetBool("EnemyWalk", false);
         animator.SetBool("EnemyAttack", true);
     }
