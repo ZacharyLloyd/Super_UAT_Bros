@@ -57,7 +57,7 @@ public class EnemyController : Controller
             case EnemyPawn.AIStates.Chase:
                 pawn.Chase();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 32)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) < 24)
                 {
                     isAttacking = true;
                     epawn.currentState = EnemyPawn.AIStates.Attack;
@@ -71,7 +71,7 @@ public class EnemyController : Controller
             case EnemyPawn.AIStates.Attack:
                 pawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 64)
+                if (Vector3.Distance(pawn.tf.position, GameManager.instance.player.tf.position) > 48)
                 {
                     isWalking = true;
                     //StopCoroutine(pawn.coroutine);
