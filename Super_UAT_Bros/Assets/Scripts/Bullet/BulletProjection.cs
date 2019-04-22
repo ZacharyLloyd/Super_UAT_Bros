@@ -11,10 +11,11 @@ public class BulletProjection : MonoBehaviour
     //before first frame
     void Awake()
     {
-        playerInstance = FindObjectOfType<PlayerPawn>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        playerInstance = FindObjectOfType<PlayerPawn>(); //Getting the player
+        rigidBody = GetComponent<Rigidbody2D>(); //Getting the player's rigid body
         rigidBody.velocity = transform.right * bulletVelocity * Mathf.Sign(playerInstance.transform.localScale.x);
     }
+    //Destroy bullet if it hits the tilemap
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tilemap")

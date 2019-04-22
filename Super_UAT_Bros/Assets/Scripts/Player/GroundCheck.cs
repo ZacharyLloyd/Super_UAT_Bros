@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-
+    //If the player is grounded
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tilemap")
@@ -13,6 +13,7 @@ public class GroundCheck : MonoBehaviour
             PlayerPawn.__animator.SetBool("grounded", PlayerPawn.__grounded);
         }
     }
+    //If the player isn't grounded
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Tilemap")

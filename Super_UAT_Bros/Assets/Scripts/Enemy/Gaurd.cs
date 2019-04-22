@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//*********THIS IS NOT USED ANYMORE********
 public class Guard : MonoBehaviour
 {
     //Component

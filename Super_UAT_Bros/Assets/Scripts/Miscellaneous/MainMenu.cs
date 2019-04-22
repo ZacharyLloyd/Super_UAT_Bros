@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Player_Spawn player_spawn;
+    public Player_Spawn player_spawn; //Setting the palyer_Spawn
 
 
     private void Update()
     {
+        //Getting the player_spawn
         if (player_spawn == null)
         {
             player_spawn = FindObjectOfType<Player_Spawn>();
@@ -18,12 +19,11 @@ public class MainMenu : MonoBehaviour
     //Play the game or play again
     public void Play()
     {
-        //Set starting position!!!
+        //Set starting position
         GameManager.instance.Scene_Name = "Level 1";
         GameManager.instance.posx = -6.89732f;
         GameManager.instance.posy = -1.98808f;
 
-        //player = FindObjectOfType<Player>();
         player_spawn.gameObject.SetActive(true);
         GameManager.instance.GUI_ACTIVE = true;
         GameManager.instance.Goto_Scene(GameManager.instance.Scene_Name);

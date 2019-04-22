@@ -29,6 +29,7 @@ public class EnemyController : Controller
         //AI states are based on enum values
         switch (epawn.currentState)
         {
+            //Idle state
             case EnemyPawn.AIStates.Idle:
                 epawn.Idle();
 
@@ -38,22 +39,24 @@ public class EnemyController : Controller
                     isWalking = true;
                     epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
-                //if (pawn.senses.CanHear(GameManager.instance.player.gameObject))
-                //{
-                //    pawn.currentState = Pawn.AIStates.LookAround;
-                //}
+                if (epawn.senses.CanHear(GameManager.instance.player.gameObject))
+                {
+                    epawn.currentState = EnemyPawn.AIStates.LookAround;
+                }
                 break;
-            //case Pawn.AIStates.LookAround:
-            //    pawn.LookAround();
-            //    if (pawn.senses.CanSee(GameManager.instance.player.gameObject))
-            //    {
-            //        pawn.currentState = Pawn.AIStates.Chase;
-            //    }
-            //    if (!pawn.senses.CanHear(GameManager.instance.player.gameObject))
-            //    {
-            //        pawn.currentState = Pawn.AIStates.Idle;
-            //    }
-            //    break;
+            //Look around state
+            case EnemyPawn.AIStates.LookAround:
+                epawn.LookAround();
+                if (epawn.senses.CanSee(GameManager.instance.player.gameObject))
+                {
+                    epawn.currentState = EnemyPawn.AIStates.Chase;
+                }
+                if (!epawn.senses.CanHear(GameManager.instance.player.gameObject))
+                {
+                    epawn.currentState = EnemyPawn.AIStates.Idle;
+                }
+                break;
+            //Chase state
             case EnemyPawn.AIStates.Chase:
                 pawn.Chase();
                 //Check for transitions
@@ -68,6 +71,7 @@ public class EnemyController : Controller
                     epawn.currentState = EnemyPawn.AIStates.Idle;
                 }
                 break;
+            //Attack state
             case EnemyPawn.AIStates.Attack:
                 pawn.Attack();
                 //Check for transitions

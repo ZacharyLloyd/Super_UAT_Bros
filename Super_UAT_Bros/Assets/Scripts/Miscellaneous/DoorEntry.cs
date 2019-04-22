@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class DoorEntry : MonoBehaviour
 {
-    public static DoorEntry instance;
+    public static DoorEntry instance; //Use for easy access to this class
 
-    public float value_x;
-    public float value_y;
-    public string scene_name;
-    public bool allowSpawn = true;
+    public float value_x; //Setting x cordinate
+    public float value_y; //Setting y cordinate
+    public string scene_name; //Scene name to switch levels
+    public bool allowSpawn = true; //Bool for spawning
 
-    public PlayerPawn player;
+    public PlayerPawn player; //Setting the palyer
 
     private void Awake()
     {
+        //Finding the player
         player = FindObjectOfType<PlayerPawn>();
     }
-
+    //Switching scences/levels
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))

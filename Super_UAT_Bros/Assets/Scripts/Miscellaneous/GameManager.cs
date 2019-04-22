@@ -8,29 +8,32 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //Singleton
-    public Transform tf;
-    public PlayerPawn player;
-    public Image healthUI;
-    public float currentHealth;
-    public float maxHealth;
-    public float damage;
-    public float ammoValue;
-    public static float ammo;
-    public float maxAmmo;
-    public TextMeshProUGUI ammoUI;
+    public Transform tf; //Transform for player or enemy automatically grabs this accordingly
+    public PlayerPawn player; //Reference to PlayerPawn
+    public Image healthUI; //Reference to the healthUI
+    public float currentHealth; //Setting current health
+    public float maxHealth; //Setting max health
+    public float damage; //Setting the damage the enemy does
+    public float ammoValue; //Setting the new value for the ammo after ammo is picked up
+    public static float ammo; //Setting the value for the current ammo
+    public float maxAmmo; //Setting the value for the max ammo
+    public TextMeshProUGUI ammoUI; //Reference for the ammoUI
 
-    public GameObject enemy;
+    public GameObject enemy; //Getting the enemy
 
-    public GameObject playerPrefab;
+    public GameObject playerPrefab; //Getting the player
 
-    private Player_Spawn playerSpawn;
+    private Player_Spawn playerSpawn; //Setting the player spawn
 
+    //Setting the destination of where to go next in the game
     [Header("Destination")]
     public string Scene_Name;
 
+    //Setting the postion for where to spawn
     [Header("Set Position")]
     public float posx, posy;
 
+    //UI is the child of gamemanager and is set to be disabled in main menu and to be enabled in the gameplay
     [Header("Game UI")]
     public RawImage healthUIParent; // This is just the background interface
     public bool GUI_ACTIVE;

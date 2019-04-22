@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//*******NOT USED ANYMORE******
 public class Player : MonoBehaviour
 {
     public float speed; //Speed for moving

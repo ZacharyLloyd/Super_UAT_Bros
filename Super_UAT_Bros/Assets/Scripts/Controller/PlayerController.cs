@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : Controller
 {
-    public static PlayerController controller;
-    public PlayerPawn player;
+    public static PlayerController controller; //Reference for PlayerController
+    public PlayerPawn player; //Reference for PlayerPawn
+
     //Mapping Movement to selected keys
     public KeyCode right = KeyCode.D;
     public KeyCode left = KeyCode.A;

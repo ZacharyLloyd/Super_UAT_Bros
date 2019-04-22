@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager mastersounds;
+    public static AudioManager mastersounds; //This is for the background music to disable for win screen
 
     public Audio[] getAudio;
     //Called before the first frame
     void Awake()
     {
-        mastersounds = this;
-        DontDestroyOnLoad(this);
+        mastersounds = this; //Setting the mastersounds
+        DontDestroyOnLoad(this); //Don't destroy AudioManager
         foreach (Audio a in getAudio)
         {
             a.source = gameObject.AddComponent<AudioSource>();

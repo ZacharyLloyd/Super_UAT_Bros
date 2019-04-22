@@ -10,33 +10,36 @@ public class Shoot : MonoBehaviour
     public Transform pointOfFire; //Assigning the gameObject that is the child to the Player gameObject
     public GameObject bulletPrefab; //Assing a Prefab to the slot in order to spawn it when shooting
 
-    public bool automaticMode;
-    [Range(1, 20)] public int recoilSpeed;
+    public bool automaticMode; //Enable or disable automatic firing
+    [Range(1, 20)] public int recoilSpeed; //Setting a recoil speed for automatic mode
 
-    private bool isKeyReleased;
-    private IEnumerator coroutine;
+    private bool isKeyReleased; //To shoot again
+    private IEnumerator coroutine; //Corountine for automatic mode
 
-    Animator animator;
-    float seconds = 1f;
-    float settedSeconds;
-    bool IsShooting = false;
+    Animator animator; //Referencing the animator
+    float seconds = 1f; //Time for recoil
+    float settedSeconds; //Refernce to seconds
+    bool IsShooting = false; //IsShooting bool to detect if shooting or not
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        settedSeconds = seconds;
+        animator = GetComponent<Animator>(); //Getting animator
+        settedSeconds = seconds; //Setting seconds
     }
 
     //called at start
     private void Start()
     {
+        //Getting bulletPrefab
         bulletPrefab.tag = "Bullet";
     }
     //called once per frame
     void Update()
     {
+        //To play animation
         animator.SetBool("IsShooting", IsShooting);
         //When player shoots
+        //Not automatic mode
         if (Input.GetKeyDown(KeyCode.Space) || isKeyReleased == true)
         {
             IsShooting = true;
@@ -62,6 +65,7 @@ public class Shoot : MonoBehaviour
                     break;
             }
         }
+        //For automatic mode
         if (Input.GetKeyUp(KeyCode.Space) && automaticMode == true) StopCoroutine(coroutine);
         if (IsShooting == true && seconds != 0)
         {
@@ -73,7 +77,7 @@ public class Shoot : MonoBehaviour
             }
         }
     }
-
+    //Recoil for automatic mode
     private IEnumerator Recoil()
     {
         float value = (float)recoilSpeed;

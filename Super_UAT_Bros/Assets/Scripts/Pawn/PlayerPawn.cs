@@ -23,17 +23,17 @@ public class PlayerPawn : Pawn
     public override void Start()
     {
         base.Start();
-        bulletPrefab.tag = "Bullet";
+        bulletPrefab.tag = "Bullet"; //Setting the bulletPrefab into the game
 
-        __animator = GetComponent<Animator>();
+        __animator = GetComponent<Animator>(); //Getting the animator that can be referenced for the player
 
-        animator = __animator;
+        animator = __animator; //Setting a value that we can take use
 
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>(); //Getting the actual animator for the player
 
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this); //Don't destroy the player
 
-        setValue = totalJumps;
+        setValue = totalJumps; //Setting the setValue to reset the total jumps after the jumps are used
     }
 
     // Update is called once per frame
@@ -155,20 +155,24 @@ public class PlayerPawn : Pawn
     //Collision with enemy to player for the player to die/loss health
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //Player collides with enemy to take damage from the enemy
         if (collision.gameObject.tag == "Enemy")
         {
+            //Amount of damage taken
             GameManager.instance.DecreaseHealth(5);
         }
     }
 
-    //Adding health and ammo
+    //Increasing health and ammo
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Increasing health
         if (collision.gameObject.tag == "Health")
         {
             GameManager.instance.IncreaseHealth(50);
             Destroy(collision.gameObject);
         }
+        //Increasing ammo
         if (collision.gameObject.tag == "Ammo")
         {
             GameManager.instance.IncreaseAmmo(10);
