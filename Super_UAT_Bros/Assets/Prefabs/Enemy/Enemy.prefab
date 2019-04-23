@@ -153,7 +153,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   senses: {fileID: 5924793658370109003}
   closeEnough: 24
-  moveSpeed: 6
+  moveSpeed: 5
   canAttack: 0
   currentState: 0
   winning: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdf05a049cf3b6459e2993052cacff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingScale: 24
+  hearingScale: 8
   distance: 24
 --- !u!50 &5924793658370109001
 Rigidbody2D:
