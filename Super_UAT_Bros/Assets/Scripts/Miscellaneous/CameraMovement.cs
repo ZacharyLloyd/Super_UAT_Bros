@@ -3,21 +3,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    //Targeted GameObject to change its location through its GameObject component
-    public GameObject target;
-
-    //Setting the duration of the camera smoothing out/in towards the player
-    public float smoothDuration;
-
-    //Setting offset of camera
-    public Vector3 offset;
+    public GameObject target; //Targeted GameObject to change its location through its GameObject component
+    public float smoothDuration; //Setting the duration of the camera smoothing out/in towards the player
+    public Vector3 offset; //Setting offset of camera
 
     //Finding the player for the camera to follow
     void Start()
     {
         target = FindObjectOfType<PlayerPawn>().gameObject;
     }
-
     // Calls every frame after regular update but there is none in this case
     void FixedUpdate()
     {

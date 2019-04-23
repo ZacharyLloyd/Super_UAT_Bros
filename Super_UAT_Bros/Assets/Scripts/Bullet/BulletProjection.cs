@@ -5,10 +5,10 @@ using UnityEngine;
 public class BulletProjection : MonoBehaviour
 {
     public PlayerPawn playerInstance; //Grabbing data from Player script to reference direction
-
     public float bulletVelocity; //How fast the bullet will go
     public Rigidbody2D rigidBody; //This in able to apply physics to bullet
-    //before first frame
+
+    //Before first frame
     void Awake()
     {
         playerInstance = FindObjectOfType<PlayerPawn>(); //Getting the player

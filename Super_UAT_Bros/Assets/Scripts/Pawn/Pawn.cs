@@ -40,12 +40,10 @@ public class Pawn : MonoBehaviour
         // Load noisemaker
         noisemaker = GetComponent<Noisemaker>();
     }
-
     public virtual void Update()
     {
 
     }
-
     //This is the player's functions
     //Moving to the right
     public virtual void MoveRight()

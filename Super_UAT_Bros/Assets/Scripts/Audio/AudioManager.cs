@@ -5,8 +5,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager mastersounds; //This is for the background music to disable for win screen
+    public Audio[] getAudio; //Getting the audio source
 
-    public Audio[] getAudio;
     //Called before the first frame
     void Awake()
     {
@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
             a.source.loop = a.enableLoop;
         }
     }
-
     // Update is called once per frame
     public void Play(string name)
     {

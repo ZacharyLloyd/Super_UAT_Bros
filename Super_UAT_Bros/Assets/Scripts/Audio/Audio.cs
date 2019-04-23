@@ -5,14 +5,13 @@ using UnityEngine;
 public class Audio
 {
     public string name; //Name for audio
-
     public AudioClip clip; //The actual audio clip
 
     //Setting volume and pitch to be adjusted
     [Range(0f, 1f)]
-    public float volume;
+    public float volume; //Volume for sound
     [Range(1f, 3f)]
-    public float pitch;
+    public float pitch; //Pitch for sound
 
     //To allow audio to be looped
     public bool enableLoop;

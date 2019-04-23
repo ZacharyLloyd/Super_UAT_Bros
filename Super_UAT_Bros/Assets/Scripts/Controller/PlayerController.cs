@@ -20,7 +20,6 @@ public class PlayerController : Controller
             controller = this;
         player = FindObjectOfType<PlayerPawn>();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -35,10 +34,8 @@ public class PlayerController : Controller
             //Set up bool for Animator
             pawn.animator.SetBool("IsWalking", pawn.isWalking);
         }
-
         if ((Input.GetKeyDown(jump) && PlayerPawn.__totalJumps != 0) && (Input.GetKey(right) == false && Input.GetKey(left) == false))
             pawn.Jump();
-
         if (PlayerPawn.__grounded == true)
         {
             PlayerPawn.__totalJumps = PlayerPawn.__setValue;

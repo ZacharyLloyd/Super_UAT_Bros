@@ -13,7 +13,6 @@ public class AISenses : MonoBehaviour
     {
         tf = GetComponent<Transform>();
     }
-
     //Function allowing the enemy to hear
     public bool CanHear(GameObject target)
     {
@@ -32,12 +31,10 @@ public class AISenses : MonoBehaviour
         //Otherwise enemies cannot hear player
         return false;
     }
-
     //Function to alloow enemy to see
     public bool CanSee(GameObject target)
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(tf.position, -tf.right, distance);
-        Debug.DrawRay(tf.position, -tf.right * distance, Color.red);
         if (hitInfo.collider != null)
         {
             if (hitInfo.collider.tag == "Player")

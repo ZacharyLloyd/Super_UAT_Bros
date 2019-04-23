@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public Player_Spawn player_spawn; //Setting the palyer_Spawn
 
-
+    //Called once per frame
     private void Update()
     {
         //Getting the player_spawn

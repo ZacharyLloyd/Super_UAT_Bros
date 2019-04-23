@@ -16,7 +16,6 @@ public class PlayerPawn : Pawn
     public float jumpForce; // Amount of jump
     public float MoveVolume; //MoveVolume for noisemaker
     public Collider2D groundCheck; //Checking if player is grounded
-
     int i = 1; //Used for flipping the character
 
     // Start is called before the first frame update

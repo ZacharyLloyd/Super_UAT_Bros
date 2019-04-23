@@ -15,12 +15,10 @@ public class EnemyController : Controller
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
-        //player = FindObjectOfType<PlayerPawn>();
         player = GameManager.instance.player;
         epawn = GetComponent<EnemyPawn>();
+        base.Start();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +32,6 @@ public class EnemyController : Controller
             //Idle state
             case EnemyPawn.AIStates.Idle:
                 epawn.Idle();
-
                 //Check for transitions
                 if (epawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {

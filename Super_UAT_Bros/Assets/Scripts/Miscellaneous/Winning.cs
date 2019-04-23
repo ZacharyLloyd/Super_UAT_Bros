@@ -12,7 +12,6 @@ public class Winning : MonoBehaviour
         //Gets the number of enemies in the level
         enemiesToBeKilled = FindObjectsOfType<EnemyPawn>().Length;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -25,8 +24,5 @@ public class Winning : MonoBehaviour
             SceneManager.LoadScene(GameManager.instance.Scene_Name);
             AudioManager.mastersounds.Stop("Music");
         }
-    }
-    private void FixedUpdate()
-    {
     }
 }

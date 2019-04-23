@@ -13,20 +13,15 @@ public class EnemyPawn : Pawn
         Chase,
         Attack
     }
-
     public AIStates currentState; //Setting the current state of the enemy
-
-    //[HideInInspector] public static Animator __animator; //The enemy's animator
-    //public Animator animator; // Enemy's animator
-    [HideInInspector]public Winning winning;
+    [HideInInspector]public Winning winning; //Winninf factor reference
 
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
         canAttack = true;
-
         winning = FindObjectOfType<Winning>();
+        base.Start();
     }
 
     // Update is called once per frame
@@ -59,9 +54,6 @@ public class EnemyPawn : Pawn
     //Move function for the enemy so they can move
     public override void Move(Transform target)
     {
-        Debug.Log("I am moving");
-        //Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
-        //rb.velocity = playerTarget;
         if (target.position.x < tf.position.x)
         {
             Flip(-1);
@@ -78,11 +70,7 @@ public class EnemyPawn : Pawn
     //Attack function so the enemy can kill the player
     public override void Attack()
     {
-        //Look at target
-        //Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
-        //new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
-        //Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
-        //rb.velocity = playerTarget;
+        //Attack player
         animator.SetBool("EnemyWalk", false);
         animator.SetBool("EnemyAttack", true);
     }

@@ -18,25 +18,22 @@ public class GameManager : MonoBehaviour
     public static float ammo; //Setting the value for the current ammo
     public float maxAmmo; //Setting the value for the max ammo
     public TextMeshProUGUI ammoUI; //Reference for the ammoUI
-
     public GameObject enemy; //Getting the enemy
-
     public GameObject playerPrefab; //Getting the player
-
     private Player_Spawn playerSpawn; //Setting the player spawn
 
     //Setting the destination of where to go next in the game
     [Header("Destination")]
-    public string Scene_Name;
+    public string Scene_Name; //Scene/level name to go to through door gameObjects
 
     //Setting the postion for where to spawn
     [Header("Set Position")]
-    public float posx, posy;
+    public float posx, posy; //Position of player to spawn at
 
     //UI is the child of gamemanager and is set to be disabled in main menu and to be enabled in the gameplay
     [Header("Game UI")]
     public RawImage healthUIParent; // This is just the background interface
-    public bool GUI_ACTIVE;
+    public bool GUI_ACTIVE; //Bool for setting Game UI active
 
     //Awake runs before all Starts
     private void Awake()
@@ -53,7 +50,6 @@ public class GameManager : MonoBehaviour
         }
         tf = GetComponent<Transform>();
     }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +59,6 @@ public class GameManager : MonoBehaviour
         ammo = maxAmmo;
         ammoUI.text =  ammo.ToString() + "/" + maxAmmo.ToString();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -79,7 +74,6 @@ public class GameManager : MonoBehaviour
             ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
         }
     }
-
     //This is used for switching scenes/levels
     public void Goto_Scene(string scene_name)
     {
@@ -87,14 +81,12 @@ public class GameManager : MonoBehaviour
         if (scene_name != null) SceneManager.LoadScene(scene_name);
 
     }
-
     //Using ammo UI
     public void UseAmmo()
     {
         --ammo;
         ammoUI.text = ammo.ToString() + "/" + maxAmmo.ToString();
     }
-
     //Decreasing the player's health
     public void DecreaseHealth(float damage)
     {
@@ -105,7 +97,6 @@ public class GameManager : MonoBehaviour
         }
         else SceneManager.LoadScene(3);
     }
-
     //Increasing the player's health
     public void IncreaseHealth(float heal)
     {
@@ -116,7 +107,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
     //Increasing the player's ammo
     public void IncreaseAmmo(float addAmmo)
     {
