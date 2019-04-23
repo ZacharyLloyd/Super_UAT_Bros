@@ -5,17 +5,13 @@ using UnityEngine.Animations;
 
 public class Shoot : MonoBehaviour
 {
-    GameManager instance;
-
+    GameManager instance; //Setting a reference to GameManager
     public Transform pointOfFire; //Assigning the gameObject that is the child to the Player gameObject
     public GameObject bulletPrefab; //Assing a Prefab to the slot in order to spawn it when shooting
-
     public bool automaticMode; //Enable or disable automatic firing
     [Range(1, 20)] public int recoilSpeed; //Setting a recoil speed for automatic mode
-
     private bool isKeyReleased; //To shoot again
     private IEnumerator coroutine; //Corountine for automatic mode
-
     Animator animator; //Referencing the animator
     float seconds = 1f; //Time for recoil
     float settedSeconds; //Refernce to seconds
@@ -26,7 +22,6 @@ public class Shoot : MonoBehaviour
         animator = GetComponent<Animator>(); //Getting animator
         settedSeconds = seconds; //Setting seconds
     }
-
     //called at start
     private void Start()
     {

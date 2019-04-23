@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Player_Spawn : MonoBehaviour
 {
     public static Player_Spawn instance; //Setting the instance for the spawning
-
     public Vector3 coordinates; //Setting the coordinates for spawning
 
     //Setting the spawn to the player or to be destoryed
