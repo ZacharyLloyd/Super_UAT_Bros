@@ -51,23 +51,26 @@ public class EnemyPawn : Pawn
     //MoveTowards function for enemy to move towards the player by taking the player's position
     public override void MoveTowards(Vector2 target)
     {
-        
-        if (Vector2.Distance(tf.position, target) <= closeEnough)
+        if (Vector2.Distance(transform.position, target) <= closeEnough)
         {
-            Move(GameManager.instance.player.tf);
+            Move(GameManager.instance.player.transform);
         }
     }
     //Move function for the enemy so they can move
     public override void Move(Transform target)
     {
-        Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
-        rb.velocity = playerTarget;
+        Debug.Log("I am moving");
+        //Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
+        //rb.velocity = playerTarget;
         if (target.position.x < tf.position.x)
         {
             Flip(-1);
-        } else if (target.position.x > tf.position.x)
+            transform.Translate(-moveSpeed * Time.deltaTime, 0,0);
+        }
+        else if (target.position.x > tf.position.x)
         {
             Flip(1);
+            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
         }
         animator.SetBool("EnemyIdle", false);
         animator.SetBool("EnemyWalk", true);
@@ -77,15 +80,15 @@ public class EnemyPawn : Pawn
     {
         //Look at target
         //Vector3 vectorToTarget = GameManager.instance.player.tf.position - tf.position;
-        Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
-        rb.velocity = playerTarget;/*new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);*/
+        //new Vector2(moveSpeed * Mathf.Sign(tf.localScale.x), 0);
+        //Vector2 playerTarget = new Vector2(GameManager.instance.player.tf.position.x, GameManager.instance.player.tf.position.y);
+        //rb.velocity = playerTarget;
         animator.SetBool("EnemyWalk", false);
         animator.SetBool("EnemyAttack", true);
     }
     //LookAround function for hearing to transfer to seeing
     public override void LookAround()
     {
-
         Flip(1 * (int)Mathf.Sign(tf.localScale.x));
     }
     //Destroying enemy

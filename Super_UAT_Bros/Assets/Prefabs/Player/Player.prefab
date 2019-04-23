@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5870468938847825456}
   - component: {fileID: 5870468938847825457}
   - component: {fileID: 5870468938847825471}
-  - component: {fileID: 5870468938847825469}
   - component: {fileID: 5870468938847825468}
   - component: {fileID: 5870468938847825467}
   - component: {fileID: 5870468938847825466}
   - component: {fileID: 5870468938847825464}
   - component: {fileID: 5870468938847825465}
   - component: {fileID: 5401353664256378216}
+  - component: {fileID: 384126821003405610}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -110,32 +110,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5870468938847825469
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870468938847825458}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.10867095, y: -0.012573779}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.78125, y: 2.03125}
-    newSize: {x: 0.54, y: 0.67}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.139708, y: 1.9686934}
-  m_EdgeRadius: 0
 --- !u!95 &5870468938847825468
 Animator:
   serializedVersion: 3
@@ -168,8 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointOfFire: {fileID: 5870468940031696670}
-  bulletPrefab: {fileID: 4518377274224217031, guid: b2fde97af0fcb0143958690e8f835aa7,
-    type: 3}
+  bulletPrefab: {fileID: 73, guid: b2fde97af0fcb0143958690e8f835aa7, type: 3}
   automaticMode: 0
   recoilSpeed: 0
 --- !u!114 &5870468938847825466
@@ -203,8 +176,7 @@ MonoBehaviour:
   rb: {fileID: 5870468938847825471}
   tf: {fileID: 5870468938847825456}
   noisemaker: {fileID: 5870468938847825466}
-  bulletPrefab: {fileID: 4518377274224217031, guid: b2fde97af0fcb0143958690e8f835aa7,
-    type: 3}
+  bulletPrefab: {fileID: 73, guid: b2fde97af0fcb0143958690e8f835aa7, type: 3}
   controller: {fileID: 5870468938847825465}
   senses: {fileID: 0}
   closeEnough: 2
@@ -252,6 +224,22 @@ MonoBehaviour:
     https://opengameart.org/content/2d-hero
 
 '
+--- !u!70 &384126821003405610
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870468938847825458}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04844117, y: -0.040988922}
+  m_Size: {x: 1.1030717, y: 1.9492722}
+  m_Direction: 0
 --- !u!1 &5870468939870986080
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5870468940031696671}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.682, y: 0.42, z: 0}
+  m_LocalPosition: {x: 0.739, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5870468938847825456}

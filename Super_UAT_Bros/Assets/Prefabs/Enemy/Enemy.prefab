@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5924793658370109003}
   - component: {fileID: 5924793658370109001}
   - component: {fileID: 337284390871722228}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -149,8 +149,7 @@ MonoBehaviour:
   tf: {fileID: 0}
   noisemaker: {fileID: 5870468938847825466, guid: 8126a43a673de404883b621889f4f417,
     type: 3}
-  bulletPrefab: {fileID: 4518377274224217031, guid: b2fde97af0fcb0143958690e8f835aa7,
-    type: 3}
+  bulletPrefab: {fileID: 73, guid: b2fde97af0fcb0143958690e8f835aa7, type: 3}
   controller: {fileID: 0}
   senses: {fileID: 5924793658370109003}
   closeEnough: 24
@@ -171,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 5924793658370108853}
+  player: {fileID: 0}
   animator: {fileID: 5924793658370109006}
   epawn: {fileID: 5924793658370108853}
 --- !u!114 &5924793658370109003
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hearingScale: 32
-  distance: 48
+  distance: 24
 --- !u!50 &5924793658370109001
 Rigidbody2D:
   serializedVersion: 4

@@ -22,7 +22,6 @@ public class PlayerPawn : Pawn
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
         bulletPrefab.tag = "Bullet"; //Setting the bulletPrefab into the game
 
         __animator = GetComponent<Animator>(); //Getting the animator that can be referenced for the player
@@ -34,6 +33,10 @@ public class PlayerPawn : Pawn
         DontDestroyOnLoad(this); //Don't destroy the player
 
         setValue = totalJumps; //Setting the setValue to reset the total jumps after the jumps are used
+
+        GameManager.instance.player = this;
+
+        base.Start();
     }
 
     // Update is called once per frame
@@ -79,7 +82,6 @@ public class PlayerPawn : Pawn
             SceneManager.LoadScene(GameManager.instance.Scene_Name);
             Destroy(gameObject);
             i = 0;
-
         }
     }
 

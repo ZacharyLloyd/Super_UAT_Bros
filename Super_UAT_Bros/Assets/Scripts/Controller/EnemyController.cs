@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
+//using UnityEngine.Animations;
 
 public class EnemyController : Controller
 {
     bool isIdle = false; //Setting a bool for enemy idle
     bool isWalking = false; //Setting a bool for enemy walking
     bool isAttacking = false; //Setting a bool for enemy attacking
-
+    public PlayerPawn player; //Referencing the player
     public Animator animator; //Setting a variable to refernece the animator
     public EnemyPawn epawn; //Setting a variable to reference the EnemyPawn
 
@@ -16,6 +16,8 @@ public class EnemyController : Controller
     public override void Start()
     {
         base.Start();
+        //player = FindObjectOfType<PlayerPawn>();
+        player = GameManager.instance.player;
         epawn = GetComponent<EnemyPawn>();
     }
 
@@ -39,7 +41,7 @@ public class EnemyController : Controller
                     isWalking = true;
                     epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
-                if (epawn.senses.CanHear(GameManager.instance.player.gameObject))
+                else if (epawn.senses.CanHear(GameManager.instance.player.gameObject))
                 {
                     epawn.currentState = EnemyPawn.AIStates.LookAround;
                 }
@@ -51,7 +53,7 @@ public class EnemyController : Controller
                 {
                     epawn.currentState = EnemyPawn.AIStates.Chase;
                 }
-                if (!epawn.senses.CanHear(GameManager.instance.player.gameObject))
+                else if (!epawn.senses.CanHear(GameManager.instance.player.gameObject))
                 {
                     epawn.currentState = EnemyPawn.AIStates.Idle;
                 }
@@ -60,12 +62,12 @@ public class EnemyController : Controller
             case EnemyPawn.AIStates.Chase:
                 epawn.Chase();
                 //Check for transitions
-                if (Vector2.Distance(epawn.tf.position, GameManager.instance.player.tf.position) < 8)
+                if (Vector2.Distance(epawn.transform.position, GameManager.instance.player.transform.position) <= 2)
                 {
                     isAttacking = true;
                     epawn.currentState = EnemyPawn.AIStates.Attack;
                 }
-                if (!epawn.senses.CanSee(GameManager.instance.player.gameObject))
+                else if (!epawn.senses.CanSee(GameManager.instance.player.gameObject))
                 {
                     isIdle = true;
                     epawn.currentState = EnemyPawn.AIStates.Idle;
@@ -75,7 +77,7 @@ public class EnemyController : Controller
             case EnemyPawn.AIStates.Attack:
                 epawn.Attack();
                 //Check for transitions
-                if (Vector3.Distance(epawn.tf.position, GameManager.instance.player.tf.position) > 16)
+                if (Vector3.Distance(epawn.transform.position, GameManager.instance.player.transform.position) > 1)
                 {
                     isWalking = true;
                     epawn.currentState = EnemyPawn.AIStates.Chase;

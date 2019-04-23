@@ -13,11 +13,6 @@ public class AISenses : MonoBehaviour
     {
         tf = GetComponent<Transform>();
     }
-    private void Update()
-    {
-        Vector3 length = new Vector3(distance * Mathf.Sign(tf.localScale.x), 0, 0);
-        Debug.DrawLine(tf.position, tf.position + length);
-    }
 
     //Function allowing the enemy to hear
     public bool CanHear(GameObject target)
@@ -41,11 +36,14 @@ public class AISenses : MonoBehaviour
     //Function to alloow enemy to see
     public bool CanSee(GameObject target)
     {
-        Vector3 length = new Vector3(distance * Mathf.Sign(tf.localScale.x), 0, 0);
-        RaycastHit2D hitInfo = Physics2D.Raycast(tf.position, tf.position + length);
-        if (hitInfo.collider.tag == "Player")
+        RaycastHit2D hitInfo = Physics2D.Raycast(tf.position, -tf.right, distance);
+        Debug.DrawRay(tf.position, -tf.right * distance, Color.red);
+        if (hitInfo.collider != null)
         {
-            return true;
+            if (hitInfo.collider.tag == "Player")
+            {
+                return true;
+            } 
         }
         return false;
     }
